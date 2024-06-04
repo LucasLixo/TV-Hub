@@ -44,8 +44,8 @@ Aqui estão alguns screenshots da nova versão:
   <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/6fc0c4f8-f78c-40be-aecd-ac0275c9fcfe" alt="Screenshot 1" style="margin: 1px;" width="19%" />
   <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/6373aec9-040f-4cfd-90f0-57ce9203dc4c" alt="Screenshot 2" style="margin: 1px;" width="19%" />
   <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/ffcf62aa-c392-45f9-807e-4fc40e242886" alt="Screenshot 4" style="margin: 1px;" width="19%" />
-  <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/809e7369-078c-4113-bf08-9f63ba43ca85" alt="Screenshot 7" style="margin: 1px;" width="19%" />
   <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/b9c98d78-f627-4f85-ad39-01c81ca8dc99" alt="Screenshot 8" style="margin: 1px;" width="19%" />
+  <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/809e7369-078c-4113-bf08-9f63ba43ca85" alt="Screenshot 7" style="margin: 1px;" width="19%" />
 </div>
 
 ## Licença
