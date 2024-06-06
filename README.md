@@ -4,7 +4,7 @@ TV Hub é um aplicativo que oferece uma vasta biblioteca de filmes e séries par
 
 ## Novidades na Versão 1.1.4
 
-Estamos empolgados em anunciar a nova atualização do TV Hub! Nesta versão 1.1.4, estamos trazendo uma adição incrível ao nosso aplicativo: a seção de séries. Agora você pode desfrutar de seus filmes e séries favoritos em um só lugar. Confira as novidades:
+Nesta versão 1.1.5, estamos trazendo uma adição incrível ao nosso aplicativo: a seção de séries. Agora você pode desfrutar de seus filmes e séries favoritos em um só lugar. Confira as novidades:
 
 ### Novidades
 
