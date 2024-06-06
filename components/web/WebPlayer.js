@@ -1,22 +1,41 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import WebView from 'react-native-webview';
 import { USER_AGENT_WINDOWS } from '../../hooks/Constants';
 import Styles from '../../hooks/Styles';
 import { DOMAINS } from '../../hooks/Constants';
 
-const WebPlayer = ({ isUrl, isInjectedJavaScript, setHandleErro }) => {
-    const WebRef = useRef(null);
-
+const WebPlayer = ({ isUrl, isInjectedJavaScript, setHandleErro, setHandleVideo }) => {
     const onShouldStartLoadWithRequest = (request) => {
         const url = new URL(request.url);
-        // return DOMAINS.includes(url.hostname);
         const hostname = url.hostname;
+
+        const requiresPathCheck = ['mixdrop', 'streamtape', 'filemoon'];
+        const domainRequiresPathCheck = requiresPathCheck.some(domain => hostname.includes(domain));
+
+        if (domainRequiresPathCheck) {
+            setHandleVideo(!url.pathname.endsWith('/e/'));
+        }
+
         return DOMAINS.some(domain => hostname.includes(domain));
     };
 
+    const scrollCSS = `
+        body { overflow: hidden; }
+        ::-webkit-scrollbar { display: none; }
+    `;
+
+    const scrollJavaScript = `
+        setTimeout(() => {
+            const style = document.createElement('style');
+            style.type = 'text/css';
+            style.appendChild(document.createTextNode(\`${scrollCSS}\`));
+            document.head.appendChild(style);
+        }, 1000);
+        true;
+    `;
+
     return (
         <WebView
-            ref={WebRef}
             source={{ uri: isUrl }}
             style={Styles.WebView}
             // javaScript Enabled
@@ -33,7 +52,7 @@ const WebPlayer = ({ isUrl, isInjectedJavaScript, setHandleErro }) => {
                 const { nativeEvent } = syntheticEvent;
                 setHandleErro(nativeEvent.description);
             }}
-            injectedJavaScript={isInjectedJavaScript}
+            injectedJavaScript={isInjectedJavaScript + scrollJavaScript}
             onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
             // start In Loading State
             startInLoadingState={false}
@@ -54,11 +73,12 @@ const WebPlayer = ({ isUrl, isInjectedJavaScript, setHandleErro }) => {
             // Icognito
             incognito={false}
             // Scrool
+            scrollEnabled={false}
             overScrollMode='never'
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
             // enable zoom
-            setBuiltInZoomControls={false}
+            setBuiltInZoomControls={true}
             // load media - always
             mixedContentMode='compatibility'
             thirdPartyCookiesEnabled={true}

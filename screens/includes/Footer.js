@@ -1,5 +1,4 @@
 import React from 'react';
-
 import MyText from '../../components/MyText';
 
 const Footer = () => {

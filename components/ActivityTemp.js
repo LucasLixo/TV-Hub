@@ -3,7 +3,6 @@ import {
     View,
     ActivityIndicator,
 } from 'react-native';
-
 import Colors from '../hooks/Colors';
 import Styles from '../hooks/Styles';
 

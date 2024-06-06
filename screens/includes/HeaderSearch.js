@@ -3,7 +3,6 @@ import {
     View,
     Pressable,
 } from 'react-native';
-
 import Colors from '../../hooks/Colors';
 import Styles from '../../hooks/Styles';
 import IconsStyle from '../../hooks/IconsStyle';

@@ -11,54 +11,54 @@ import ActivityTemp from '../components/ActivityTemp';
 import Footer from './includes/Footer';
 
 const Serie = () => {
-  const [results, setResults] = useState({
-    recente: [],
-    animacao: [],
-    aventura: [],
-    acao: [],
-    comedia: [],
-  });
+    const [results, setResults] = useState(() => { return {
+        recente: [],
+        animacao: [],
+        aventura: [],
+        acao: [],
+        comedia: [],
+    }});
 
-  const makeEven = (data) => (data.length % 2 === 0 ? data : data.slice(0, -1));
+    const makeEven = (data) => (data.length % 2 === 0 ? data : data.slice(0, -1));
 
-  const handleMessage = (key, data) => {
-    setResults((prevResults) => ({
-      ...prevResults,
-      [key]: makeEven(JSON.parse(data)),
-    }));
-  };
+    const handleMessage = (key, data) => {
+        setResults((prevResults) => ({
+            ...prevResults,
+            [key]: makeEven(JSON.parse(data)),
+        }));
+    };
 
-  const allDataLoaded = Object.values(results).every((data) => data.length > 0);
+    const allDataLoaded = Object.values(results).every((data) => data.length > 0);
 
-  return (
-    <>
-      {GENRES_SERIES.slice(0, 5).map(({ key, url }) => (
-        <WebScraping
-          key={key}
-          isUrl={url}
-          isInjectedJavaScript={SCRIPT_NEW_MOVIES}
-          setHandleMessage={(data) => handleMessage(key, data)}
-        />
-      ))}
-      {allDataLoaded ? (
-        <ScrollView style={Styles.ContainerView} showsHorizontalScrollIndicator={false}>
-          <HeaderOptions title='Series' />
-          {GENRES_SERIES.slice(0, 5).map(({ key, title, url }) => (
-            <View key={key}>
-              <ExpandResults title={title} url={url} />
-              <FlatlistHorizontal data={results[key].slice(0, results[key].length / 2)} />
-            </View>
-          ))}
-          <Footer />
-        </ScrollView>
-      ) : (
-        <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute' }}>
-          <HeaderOptions title='Series' />
-          <ActivityTemp />
-        </View>
-      )}
-    </>
-  );
+    return (
+        <>
+            {GENRES_SERIES.slice(0, 5).map(({ key, url }) => (
+                <WebScraping
+                    key={key}
+                    isUrl={url}
+                    isInjectedJavaScript={SCRIPT_NEW_MOVIES}
+                    setHandleMessage={(data) => handleMessage(key, data)}
+                />
+            ))}
+            {allDataLoaded ? (
+                <ScrollView style={Styles.ContainerView} showsHorizontalScrollIndicator={false}>
+                    <HeaderOptions title='Series' />
+                    {GENRES_SERIES.slice(0, 5).map(({ key, title, url }) => (
+                        <View key={key}>
+                            <ExpandResults title={title} url={url} />
+                            <FlatlistHorizontal data={results[key].slice(0, results[key].length / 2)} />
+                        </View>
+                    ))}
+                    <Footer />
+                </ScrollView>
+            ) : (
+                <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute' }}>
+                    <HeaderOptions title='Series' />
+                    <ActivityTemp />
+                </View>
+            )}
+        </>
+    );
 };
 
 export default Serie;

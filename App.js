@@ -4,17 +4,15 @@ import { setStatusBarBackgroundColor, setStatusBarHidden, setStatusBarStyle, set
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NetInfo from '@react-native-community/netinfo';
 import ActivityErro from './components/ActivityErro';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-
 import Colors from './hooks/Colors';
 import Styles from './hooks/Styles';
-
 import Movie from './screens/Movie';
-import Serie from './screens/Serie';
+// import Serie from './screens/Serie';
 import Config from './screens/Config';
 import Search from './screens/Search';
 import Download from './screens/Download';
@@ -22,11 +20,11 @@ import PlayerVideo from './screens/PlayerVideo';
 import ResultsGenre from './screens/ResultsGenre';
 import DetailsMovie from './screens/DetailsMovie';
 import Comments from './screens/Comments';
-import IconsStyle from './hooks/IconsStyle';
+// import IconsStyle from './hooks/IconsStyle';
 
 SplashScreen.preventAutoHideAsync();
 
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const navTheme = {
@@ -36,11 +34,11 @@ const navTheme = {
 };
 
 const useInternetConnection = () => {
-    const [isConnected, setIsConnected] = useState(true);
+    const [isConnected, setIsConnected] = useState(() => { return true });
 
     useEffect(() => {
         const unsubscribe = NetInfo.addEventListener(state => {
-            setIsConnected(state.isConnected);
+            setIsConnected(() => { return state.isConnected });
         });
 
         return () => {
@@ -51,12 +49,12 @@ const useInternetConnection = () => {
     return isConnected;
 };
 
-function BottomTabs() {
+/* function BottomTabs() {
     return (
         <Tab.Navigator
             initialRouteName='Movie'
             screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
+                tabBarIcon: ({ focused }) => {
                     let iconName;
                     let iconColor;
                     iconColor = focused ? Colors.sky.a : Colors.text.a;
@@ -69,7 +67,7 @@ function BottomTabs() {
                         iconName = focused ? 'config' : 'config';
                     }
 
-                    return <IconsStyle name={iconName} size={34} color={iconColor} />;
+                    return <IconsStyle name={iconName} size={28} color={iconColor} />;
                 },
                 headerShown: false,
                 tabBarShowLabel: false,
@@ -88,7 +86,7 @@ function BottomTabs() {
             <Tab.Screen name="Config" component={Config} />
         </Tab.Navigator>
     );
-}
+} */
 
 function App() {
     const [fontsLoaded, fontError] = useFonts({
@@ -122,10 +120,12 @@ function App() {
                         headerShown: false,
                         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     }}
-                    initialRouteName='Main'
+                    initialRouteName='Movie'
                 >
-                    <Stack.Screen name="Main" component={BottomTabs} />
+                    {/* <Stack.Screen name="Main" component={BottomTabs} /> */}
+                    <Stack.Screen name="Movie" component={Movie} />
                     <Stack.Screen name="Search" component={Search} />
+                    <Stack.Screen name="Config" component={Config} />
                     <Stack.Screen name="Download" component={Download} />
                     <Stack.Screen name="PlayerVideo" component={PlayerVideo} />
                     <Stack.Screen name="DetailsMovie" component={DetailsMovie} />

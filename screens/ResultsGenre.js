@@ -1,5 +1,4 @@
 import React, { useEffect, useReducer, useState } from 'react';
-
 import HeaderTitle from './includes/HeaderTitle';
 import { useRoute } from '@react-navigation/native';
 import ActivityTemp from '../components/ActivityTemp';
@@ -26,16 +25,16 @@ const reducer = (state, action) => {
 
 const Search = () => {
     const route = useRoute();
-    const [isResults, setResults] = useState([]);
-    const [isLoadResults, setLoadResults] = useState(true)
+    const [isResults, setResults] = useState(() => { return [] });
+    const [isLoadResults, setLoadResults] = useState(() => { return true })
 
     const url = route.params?.url;
     const title = route.params?.title;
 
-    const [state, dispatch] = useReducer(reducer, {
+    const [state, dispatch] = useReducer(reducer, () => { return {
         TotalPage: null,
         Page: 1,
-    });
+    }});
 
     useEffect(() => {
         if (isResults && isResults.length > 0) {

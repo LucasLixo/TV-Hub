@@ -3,7 +3,6 @@ import {
     Text,
     View,
 } from 'react-native';
-
 import Styles from '../hooks/Styles';
 import Colors from '../hooks/Colors';
 

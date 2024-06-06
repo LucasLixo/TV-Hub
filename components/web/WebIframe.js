@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import WebView from 'react-native-webview';
 import { USER_AGENT_IPHONE } from '../../hooks/Constants';
 import Styles from '../../hooks/Styles';
 import { DOMAINS } from '../../hooks/Constants';
 
 const WebIframe = ({ isUrl, isInjectedJavaScript, setHandleErro, setHandleMessage, ...props }) => {
-    const WebRef = useRef(null);
-
     const onShouldStartLoadWithRequest = (request) => {
         const url = new URL(request.url);
         // return DOMAINS.includes(url.hostname);
@@ -16,7 +14,6 @@ const WebIframe = ({ isUrl, isInjectedJavaScript, setHandleErro, setHandleMessag
 
     return (
         <WebView
-            ref={WebRef}
             source={{ uri: isUrl }}
             style={Styles.WebView}
             // javaScript Enabled

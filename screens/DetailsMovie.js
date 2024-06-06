@@ -17,22 +17,22 @@ import Footer from './includes/Footer';
 
 const DetailsMovie = () => {
     const route = useRoute();
-    const [isDetails, setDetails] = useState(null);
-    const [isShowMessage, setShowMessage] = useState(false);
-    const [isShowImage, setShowImage] = useState(false);
+    const [isDetails, setDetails] = useState(() => { return null });
+    const [isShowMessage, setShowMessage] = useState(() => { return false });
+    const [isShowImage, setShowImage] = useState(() => { return false });
 
-    const [isSelectedIndex, setSelectedIndex] = useState(0);
+    const [isSelectedIndex, setSelectedIndex] = useState(() => { return 0 });
 
-    const [isModalEpisode, setModalEpisode] = useState(false);
-    const [isUrlPD, setUrlPD] = useState('');
+    const [isModalEpisode, setModalEpisode] = useState(() => { return false });
+    const [isUrlPD, setUrlPD] = useState(() => { return '' });
 
     const [isEpsisodes, setEpsisodes] = useState([]);
-    const [isLoadEpsisodes, setLoadEpsisodes] = useState(false);
+    const [isLoadEpsisodes, setLoadEpsisodes] = useState(() => { return false });
 
-    const [isSeasonLink, setSeasonLink] = useState('?temporada=1');
+    const [isSeasonLink, setSeasonLink] = useState(() => { return '?temporada=1' });
 
-    const [isShowPlayer, setShowPlayer] = useState(false);
-    const [isShowDownload, setShowDownload] = useState(false);
+    const [isShowPlayer, setShowPlayer] = useState(() => { return false });
+    const [isShowDownload, setShowDownload] = useState(() => { return false });
 
     const navigation = useNavigation();
     const data = route.params?.data;

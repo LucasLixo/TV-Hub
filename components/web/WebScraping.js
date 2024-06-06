@@ -1,14 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import WebView from 'react-native-webview';
 import { USER_AGENT_IPHONE } from '../../hooks/Constants';
-import Styles from '../../hooks/Styles';
 
 const WebScraping = ({ isUrl, isInjectedJavaScript, setHandleMessage }) => {
-    const WebRef = useRef(null);
-
+    
     return (
         <WebView
-            ref={WebRef}
             source={{ uri: isUrl }}
             style={{ flex: 0, height: 0, width: 0, position: 'absolute' }}
             // javaScript Enabled

@@ -11,10 +11,10 @@ import { clipboardToast } from '../hooks/Fuctions';
 
 const Download = () => {
     const route = useRoute();
-    const [script, setScript] = useState(null);
-    const [urlVideo, setUrlVideo] = useState(null);
-    const [status, setStatus] = useState(null);
-    const [headers, setHeaders] = useState(null);
+    const [script, setScript] = useState(() => { return null });
+    const [urlVideo, setUrlVideo] = useState(() => { return null });
+    const [status, setStatus] = useState(() => { return null });
+    const [headers, setHeaders] = useState(() => { return null });
 
     const title = route.params?.title;
     const url = route.params?.url;

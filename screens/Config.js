@@ -5,6 +5,7 @@ import { VIZER_DOMAIN } from "../hooks/Constants";
 import MyText from '../components/MyText';
 import Styles from '../hooks/Styles';
 import { ScrollView, View } from 'react-native';
+import HeaderTitle from './includes/HeaderTitle';
 
 const Config = () => {
     /* const configHtml = `
@@ -44,6 +45,7 @@ const Config = () => {
                 source={{ html: configHtml }}
                 userAgent={USER_AGENT_MOZILLA}
             /> */}
+            <HeaderTitle title='Configurações' />
             <View style={Styles.Hr} />
             <MyText type='topic'>
                 {`Provedor: `}
