@@ -4,7 +4,6 @@ import { setStatusBarBackgroundColor, setStatusBarHidden, setStatusBarStyle, set
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NetInfo from '@react-native-community/netinfo';
 import ActivityErro from './components/ActivityErro';
 import { useFonts } from 'expo-font';
@@ -12,7 +11,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import Colors from './hooks/Colors';
 import Styles from './hooks/Styles';
 import Movie from './screens/Movie';
-// import Serie from './screens/Serie';
 import Config from './screens/Config';
 import Search from './screens/Search';
 import Download from './screens/Download';
@@ -20,11 +18,9 @@ import PlayerVideo from './screens/PlayerVideo';
 import ResultsGenre from './screens/ResultsGenre';
 import DetailsMovie from './screens/DetailsMovie';
 import Comments from './screens/Comments';
-// import IconsStyle from './hooks/IconsStyle';
 
 SplashScreen.preventAutoHideAsync();
 
-// const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const navTheme = {
@@ -49,49 +45,8 @@ const useInternetConnection = () => {
     return isConnected;
 };
 
-/* function BottomTabs() {
-    return (
-        <Tab.Navigator
-            initialRouteName='Movie'
-            screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused }) => {
-                    let iconName;
-                    let iconColor;
-                    iconColor = focused ? Colors.sky.a : Colors.text.a;
-
-                    if (route.name === 'Movie') {
-                        iconName = focused ? 'movie' : 'movie';
-                    } else if (route.name === 'Serie') {
-                        iconName = focused ? 'serie' : 'serie';
-                    } else if (route.name === 'Config') {
-                        iconName = focused ? 'config' : 'config';
-                    }
-
-                    return <IconsStyle name={iconName} size={28} color={iconColor} />;
-                },
-                headerShown: false,
-                tabBarShowLabel: false,
-                tabBarActiveTintColor: Colors.sky.a,
-                tabBarInactiveTintColor: Colors.text.a,
-                tabBarLabelStyle: {
-                    fontWeight: 'bold',
-                },
-                tabBarStyle: {
-                    height: 50,
-                },
-            })}
-        >
-            <Tab.Screen name="Serie" component={Serie} />
-            <Tab.Screen name="Movie" component={Movie} />
-            <Tab.Screen name="Config" component={Config} />
-        </Tab.Navigator>
-    );
-} */
-
 function App() {
-    const [fontsLoaded, fontError] = useFonts({
-        'Noto-Sans': require('./assets/fonts/Noto-Sans-Medium.ttf'),
-    });
+    const [fontsLoaded, fontError] = useFonts({ 'Noto-Sans': require('./assets/fonts/Noto-Sans-Medium.ttf')});
 
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded || fontError) {
@@ -122,7 +77,6 @@ function App() {
                     }}
                     initialRouteName='Movie'
                 >
-                    {/* <Stack.Screen name="Main" component={BottomTabs} /> */}
                     <Stack.Screen name="Movie" component={Movie} />
                     <Stack.Screen name="Search" component={Search} />
                     <Stack.Screen name="Config" component={Config} />

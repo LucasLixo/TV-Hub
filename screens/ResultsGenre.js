@@ -31,10 +31,12 @@ const Search = () => {
     const url = route.params?.url;
     const title = route.params?.title;
 
-    const [state, dispatch] = useReducer(reducer, () => { return {
-        TotalPage: null,
-        Page: 1,
-    }});
+    const [state, dispatch] = useReducer(reducer, () => {
+        return {
+            TotalPage: null,
+            Page: 1,
+        }
+    });
 
     useEffect(() => {
         if (isResults && isResults.length > 0) {
@@ -69,34 +71,36 @@ const Search = () => {
                         <ScrollView style={[Styles.ContainerView, { paddingRight: 10 }]} showsVerticalScrollIndicator={true} showsHorizontalScrollIndicator={false}>
                             <HeaderTitle title={title} />
                             <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
-                                {state.Page !== 1 && (
-                                    <Pressable
-                                        style={Styles.ButtonPage}
-                                        onPress={() => {
-                                            setLoadResults(true)
-                                            dispatch({ type: 'preview' })
-                                        }}
-                                    >
-                                        <MyText type='topic'>
-                                            {`Anterior`}
-                                        </MyText>
-                                    </Pressable>
-                                )}
                                 {state.TotalPage !== null && (
-                                    <MyText type='topic'>{`Páginas: ${state.TotalPage}`}</MyText>
-                                )}
-                                {state.TotalPage !== null && state.Page !== state.TotalPage && (
-                                    <Pressable
-                                        style={Styles.ButtonPage}
-                                        onPress={() => {
-                                            setLoadResults(true)
-                                            dispatch({ type: 'next' })
-                                        }}
-                                    >
-                                        <MyText type='topic'>
-                                            {`Próximo`}
-                                        </MyText>
-                                    </Pressable>
+                                    <>
+                                        {state.TotalPage != 0 && state.Page > 1 && (
+                                            <Pressable
+                                                style={Styles.ButtonPage}
+                                                onPress={() => {
+                                                    setLoadResults(true)
+                                                    dispatch({ type: 'preview' })
+                                                }}
+                                            >
+                                                <MyText type='topic'>
+                                                    {`Anterior`}
+                                                </MyText>
+                                            </Pressable>
+                                        )}
+                                        <MyText type='topic'>{`Páginas: ${state.TotalPage}`}</MyText>
+                                        {state.TotalPage != 0 && state.Page !== state.TotalPage && (
+                                            <Pressable
+                                                style={Styles.ButtonPage}
+                                                onPress={() => {
+                                                    setLoadResults(true)
+                                                    dispatch({ type: 'next' })
+                                                }}
+                                            >
+                                                <MyText type='topic'>
+                                                    {`Próximo`}
+                                                </MyText>
+                                            </Pressable>
+                                        )}
+                                    </>
                                 )}
                             </View>
                             <View style={Styles.Hr} />

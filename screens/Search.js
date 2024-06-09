@@ -53,16 +53,16 @@ const genreKey = {
 const Search = () => {
     const navigation = useNavigation();
 
-    const [isString, setString] = useState(() => { return '' });
-    const [isResults, setResults] = useState(() => { return [] });
-    const [isStringSearch, setStringSearch] = useState(() => { return '' });
+    const [isString, setString] = useState(() => '');
+    const [isResults, setResults] = useState(() => []);
+    const [isStringSearch, setStringSearch] = useState(() => '');
 
-    const [isLoaded, setLoaded] = useState(() => { return true });
+    const [isLoaded, setLoaded] = useState(() => true);
 
-    const [state, dispatch] = useReducer(reducer, () =>  { return {
+    const [state, dispatch] = useReducer(reducer, {
         TotalPage: null,
         Page: 1,
-    }});
+    });
 
     const searchUrl = `${VIZER_SEARCH}${isStringSearch}&page=${state.Page}`;
 
@@ -76,6 +76,17 @@ const Search = () => {
         }
     }, [isResults]);
 
+    useEffect(() => {
+        setLoaded(true);
+    }, [isStringSearch]);
+
+    const handleResults = (results) => {
+        const parsedResults = JSON.parse(results);
+        if (JSON.stringify(isResults) !== JSON.stringify(parsedResults)) {
+            setResults(parsedResults);
+        }
+    };
+
     return (
         <>
             <ScrollView style={Styles.ContainerView} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
@@ -85,9 +96,7 @@ const Search = () => {
                         <WebScraping
                             isUrl={searchUrl}
                             isInjectedJavaScript={SCRIPT_NEW_MOVIES}
-                            setHandleMessage={(results) => {
-                                setResults(JSON.parse(results));
-                            }}
+                            setHandleMessage={handleResults}
                         />
                         <WebScraping
                             isUrl={`${VIZER_SEARCH}${isStringSearch}`}
@@ -99,7 +108,7 @@ const Search = () => {
                         {isResults.length > 0 && state.TotalPage !== null && (
                             <>
                                 <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
-                                    {state.Page !== 1 && (
+                                    {state.TotalPage != 0 && state.Page > 1 && (
                                         <Pressable
                                             style={Styles.ButtonPage}
                                             onPress={() => {
@@ -113,7 +122,7 @@ const Search = () => {
                                         </Pressable>
                                     )}
                                     <MyText type='topic'>{`Páginas: ${state.TotalPage}`}</MyText>
-                                    {state.Page !== state.TotalPage && (
+                                    {state.TotalPage != 0 && state.Page !== state.TotalPage && (
                                         <Pressable
                                             style={Styles.ButtonPage}
                                             onPress={() => {
@@ -171,7 +180,7 @@ const Search = () => {
                 )}
             </ScrollView>
             {isStringSearch && isLoaded && (
-                <View style={{ width: '100%', height: '100%', position: 'absolute' }}>
+                <View style={{ position: 'absolute', top: '50%', height: 100, width: '100%', backgroundColor: `${Colors.background.a}CC` }}>
                     <ActivityTemp />
                 </View>
             )}

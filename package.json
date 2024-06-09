@@ -1,6 +1,6 @@
 {
   "name": "tv-hub",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@react-native-community/netinfo": "^11.3.1",
-    "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
     "expo": "^51.0.11",
