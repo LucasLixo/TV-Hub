@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react';
-import HeaderTitle from './includes/HeaderTitle';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import ActivityTemp from '../components/ActivityTemp';
 import FlatlistVertical from '../components/FlatlistVertical';
 import {
@@ -27,18 +26,17 @@ const reducer = (state, action) => {
 };
 
 const Search = () => {
+    const navigation = useNavigation();
     const route = useRoute();
-    const [isResults, setResults] = useState(() => { return [] });
-    const [isLoadResults, setLoadResults] = useState(() => { return true })
+    const [isResults, setResults] = useState([]);
+    const [isLoadResults, setLoadResults] = useState(true);
 
     const url = route.params?.url;
     const title = route.params?.title;
 
-    const [state, dispatch] = useReducer(reducer, () => {
-        return {
-            TotalPage: null,
-            Page: 1,
-        }
+    const [state, dispatch] = useReducer(reducer, {
+        TotalPage: null,
+        Page: 1,
     });
 
     const handleResults = (results) => {
@@ -53,6 +51,10 @@ const Search = () => {
             setLoadResults(false);
         }
     }, [isResults]);
+
+    useEffect(() => {
+        navigation.setOptions({ title: title });
+    }, [title]);
 
     return (
         <>
@@ -74,42 +76,50 @@ const Search = () => {
                 <>
                     {isLoadResults ? (
                         <View style={{ width: '100%', height: '100%', position: 'relative' }}>
-                            <HeaderTitle title={title} />
                             <ActivityTemp />
                         </View>
                     ) : (
-                        <ScrollView style={[Styles.ContainerView, { paddingRight: 10 }]} showsVerticalScrollIndicator={true} showsHorizontalScrollIndicator={false}>
-                            <HeaderTitle title={title} />
-                            <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
-                                {state.TotalPage !== null && (
-                                    <>
-                                        {state.TotalPage != 0 && state.Page > 1 && (
-                                            <Button
-                                                mode='contained'
-                                                onPress={() => {
-                                                    setLoadResults(true)
-                                                    dispatch({ type: 'preview' })
-                                                }}
-                                            >
-                                                {`Anterior`}
-                                            </Button>
-                                        )}
-                                        <Text variant="titleSmall">{`Páginas: ${state.TotalPage}`}</Text>
-                                        {state.TotalPage != 0 && state.Page !== state.TotalPage && (
-                                            <Button
-                                                mode='contained'
-                                                onPress={() => {
-                                                    setLoadResults(true)
-                                                    dispatch({ type: 'next' })
-                                                }}
-                                            >
-                                                {`Próximo`}
-                                            </Button>
-                                        )}
-                                    </>
-                                )}
-                            </View>
-                            <View style={Styles.Hr} />
+                        <ScrollView style={[Styles.ContainerView, { paddingRight: 10, paddingTop: 10 }]} showsVerticalScrollIndicator={true} showsHorizontalScrollIndicator={false}>
+                            {state.TotalPage !== null && (
+                                <>
+                                    <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
+                                        <>
+                                            {state.TotalPage != 0 && state.Page > 1 && (
+                                                <Button
+                                                    mode='contained'
+                                                    onPress={() => {
+                                                        setLoadResults(true);
+                                                        dispatch({ type: 'preview' });
+                                                    }}
+                                                >
+                                                    {`Anterior`}
+                                                </Button>
+                                            )}
+                                            {state.TotalPage != 0 && state.Page !== state.TotalPage && (
+                                                <Button
+                                                    mode='contained'
+                                                    onPress={() => {
+                                                        setLoadResults(true);
+                                                        dispatch({ type: 'next' });
+                                                    }}
+                                                >
+                                                    {`Próximo`}
+                                                </Button>
+                                            )}
+                                        </>
+                                    </View>
+                                    <View style={Styles.Hr} />
+                                </>
+                            )}
+                            {state.TotalPage !== null && (
+                                <>
+                                    <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
+                                    <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
+                                        <Text variant="titleSmall">{`Página: ${state.Page}`}</Text>
+                                    </View>
+                                    <View style={Styles.Hr} />
+                                </>
+                            )}
                             {isResults && isResults.length > 0 && (
                                 <FlatlistVertical data={isResults} />
                             )}

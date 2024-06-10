@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { clipboardToast, extractUrlVizer } from '../../utils/Fuctions';
 import { useNavigation } from '@react-navigation/native';
 import ShowModalFade from '../../components/ShowModalFade';
@@ -7,7 +7,7 @@ import Styles from '../../utils/Styles';
 import {
     MD3DarkTheme as theme,
     Text,
-    Icon
+    Button
 } from 'react-native-paper';
 
 const OptionsPlayer = ({ isModalVisible, setModalVisible, url }) => {
@@ -30,36 +30,29 @@ const OptionsPlayer = ({ isModalVisible, setModalVisible, url }) => {
                     {`Assistir`}
                 </Text>
                 <View style={Styles.CardIn}>
-                    <Pressable
-                        style={Styles.CardContainer}
+                    <Button
+                        mode='contained'
                         onLongPress={() => clipboardToast(`${extractedUrl}&sv=mixdrop`)}
                         onPress={() => handleNavigate('mixdrop')}
                     >
-                        <Text  variant='titleSmall'>{`Mixdrop`}</Text>
-                        <Pressable onPress={() => clipboardToast(`${extractedUrl}&sv=mixdrop`)}>
-                            <Icon source='link' size={28} />
-                        </Pressable>
-                    </Pressable>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level4 }]} />
-                    <Pressable
-                        style={Styles.CardContainer}
+                        {`Mixdrop`}
+                    </Button>
+                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Button
+                        mode='contained'
+                        onLongPress={() => clipboardToast(`${extractedUrl}&sv=filemoon`)}
                         onPress={() => handleNavigate('filemoon')}
                     >
-                        <Text  variant='titleSmall'>{`Filemoon`}</Text>
-                        <Pressable onPress={() => clipboardToast(`${extractedUrl}&sv=filemoon`)}>
-                            <Icon source='link' size={28} />
-                        </Pressable>
-                    </Pressable>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level4 }]} />
-                    <Pressable
-                        style={Styles.CardContainer}
+                        {`Filemoon`}
+                    </Button>
+                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Button
+                        mode='contained'
+                        onLongPress={() => clipboardToast(`${extractedUrl}&sv=streamtape`)}
                         onPress={() => handleNavigate('streamtape')}
                     >
-                        <Text  variant='titleSmall'>{`Streamtape`}</Text>
-                        <Pressable onPress={() => clipboardToast(`${extractedUrl}&sv=streamtape`)}>
-                            <Icon source='link' size={28} />
-                        </Pressable>
-                    </Pressable>
+                        {`Streamtape`}
+                    </Button>
                 </View>
             </View>
         </ShowModalFade>

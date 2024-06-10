@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import ActivityTemp from '../components/ActivityTemp';
 import WebIframe from '../components/web/WebIframe';
 import { SCRIPT_EXTRACT_FILEMOON, SCRIPT_EXTRACT_MIXDROP, SCRIPT_EXTRACT_STREAMTAPE } from '../utils/Scripts';
 import { Linking, Pressable, View } from 'react-native';
-import HeaderTitle from './includes/HeaderTitle';
 import Styles from '../utils/Styles';
 import {
     Text
@@ -37,6 +36,12 @@ const Download = () => {
                 setScript(null);
         }
     }, [service]);
+
+    const navigation = useNavigation();
+    
+    useEffect(() => {
+        navigation.setOptions({ title: `Baixar: ${title}` });
+    }, [title]);
 
     const headersUrl = async (url) => {
         try {
@@ -71,7 +76,6 @@ const Download = () => {
 
     return (
         <View style={{ flex: 1, width: '100%', height: '100%' }}>
-            <HeaderTitle title={`Baixar: ${title}`} />
             {(urlVideo && urlVideo !== '') ? (
                 <View style={{ flex: 1, flexDirection: 'column', padding: 10 }}>
                     <View style={Styles.CardContainer}>
@@ -120,8 +124,8 @@ const Download = () => {
                                     setUrlVideo(urlExtracted);
                                 }
                             }}
-                            overScrollMode='never' 
-                            scrollEnabled={false} 
+                            overScrollMode='never'
+                            scrollEnabled={false}
                         />
                     </View>
                     <Text variant="titleSmall" style={{ textTransform: 'uppercase' }}>{`Inicie o video para baixar`}</Text>

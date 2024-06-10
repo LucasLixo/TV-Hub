@@ -6,7 +6,7 @@ import Styles from '../../utils/Styles';
 import {
     MD3DarkTheme as theme,
     Text,
-    Icon
+    Button
 } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
@@ -30,29 +30,26 @@ const OptionsDownload = ({ isModalVisible, setModalVisible, url, title }) => {
                     {`Baixar`}
                 </Text>
                 <View style={Styles.CardIn}>
-                    <Pressable
-                        style={Styles.CardContainer}
+                    <Button
+                        mode='contained'
                         onPress={() => handleDownload('mixdrop')}
                     >
-                        <Text variant='titleSmall'>{`Mixdrop`}</Text>
-                        <Icon source='download' size={28} />
-                    </Pressable>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level4 }]} />
-                    <Pressable
-                        style={Styles.CardContainer}
+                        {`Mixdrop`}
+                    </Button>
+                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Button
+                        mode='contained'
                         onPress={() => handleDownload('filemoon')}
                     >
-                        <Text variant='titleSmall'>{`Filemoon`}</Text>
-                        <Icon source='download' size={28} />
-                    </Pressable>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level4 }]} />
-                    <Pressable
-                        style={Styles.CardContainer}
+                        {`Filemoon`}
+                    </Button>
+                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Button
+                        mode='contained'
                         onPress={() => handleDownload('streamtape')}
                     >
-                        <Text variant='titleSmall'>{`Streamtape`}</Text>
-                        <Icon source='download' size={28} />
-                    </Pressable>
+                        {`Streamtape`}
+                    </Button>
                 </View>
             </View>
         </ShowModalFade>

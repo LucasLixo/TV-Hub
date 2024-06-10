@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import WebScraping from '../components/web/WebScraping';
-import HeaderSearch from './includes/HeaderSearch';
 import { View, ScrollView, Pressable } from 'react-native';
 import { encodeWithPlus } from '../utils/Fuctions';
 import {
@@ -11,7 +10,7 @@ import {
 } from 'react-native-paper';
 import { GENRES_MOVIES, VIZER_SEARCH } from '../utils/Constants';
 import ActivityTemp from '../components/ActivityTemp';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { SCRIPT_NEW_MOVIES, SCRIPT_PAGES } from '../utils/Scripts';
 import Styles from '../utils/Styles';
 import FlatlistVertical from '../components/FlatlistVertical';
@@ -63,12 +62,13 @@ const genreKey = {
 
 const Search = () => {
     const navigation = useNavigation();
+    const route = useRoute();
 
-    const [isString, setString] = useState(() => '');
-    const [isResults, setResults] = useState(() => []);
-    const [isStringSearch, setStringSearch] = useState(() => '');
+    const [isString, setString] = useState('');
+    const [isResults, setResults] = useState([]);
+    const [isStringSearch, setStringSearch] = useState('');
 
-    const [isLoaded, setLoaded] = useState(() => true);
+    const [isLoaded, setLoaded] = useState(true);
 
     const [state, dispatch] = useReducer(reducer, {
         TotalPage: null,
@@ -76,6 +76,12 @@ const Search = () => {
     });
 
     const searchUrl = `${VIZER_SEARCH}${isStringSearch}&page=${state.Page}`;
+
+    useEffect(() => {
+        if (route.params?.query) {
+            setString(route.params.query);
+        }
+    }, [route.params?.query]);
 
     useEffect(() => {
         setStringSearch(encodeWithPlus(isString));
@@ -100,8 +106,7 @@ const Search = () => {
 
     return (
         <>
-            <ScrollView style={Styles.ContainerView} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                <HeaderSearch setStringSearch={setString} />
+            <ScrollView style={[Styles.ContainerView, { paddingTop: 10 }]} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                 {isStringSearch ? (
                     <>
                         <WebScraping
@@ -119,29 +124,33 @@ const Search = () => {
                         {isResults.length > 0 && state.TotalPage !== null && (
                             <>
                                 <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
-                                    {state.TotalPage != 0 && state.Page > 1 && (
+                                    {state.TotalPage !== 0 && state.Page > 1 && (
                                         <Button
                                             mode='contained'
                                             onPress={() => {
-                                                setLoaded(true)
-                                                dispatch({ type: 'preview' })
+                                                setLoaded(true);
+                                                dispatch({ type: 'preview' });
                                             }}
                                         >
                                             {`Anterior`}
                                         </Button>
                                     )}
-                                    <Text variant="titleSmall">{`Páginas: ${state.TotalPage}`}</Text>
-                                    {state.TotalPage != 0 && state.Page !== state.TotalPage && (
+                                    {state.TotalPage !== 0 && state.Page !== state.TotalPage && (
                                         <Button
                                             mode='contained'
                                             onPress={() => {
-                                                setLoaded(true)
-                                                dispatch({ type: 'next' })
+                                                setLoaded(true);
+                                                dispatch({ type: 'next' });
                                             }}
                                         >
                                             {`Próximo`}
                                         </Button>
                                     )}
+                                </View>
+                                <View style={Styles.Hr} />
+                                <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
+                                    <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
+                                    <Text variant="titleSmall">{`Página: ${state.Page}`}</Text>
                                 </View>
                                 <View style={Styles.Hr} />
                                 <FlatlistVertical data={isResults} />
@@ -180,7 +189,7 @@ const Search = () => {
                 )}
             </ScrollView>
             {isStringSearch && isLoaded && (
-                <View style={{ position: 'absolute', top: '50%', height: 100, width: '100%', backgroundColor: theme.colors.background }}>
+                <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', backgroundColor: theme.colors.background }}>
                     <ActivityTemp />
                 </View>
             )}

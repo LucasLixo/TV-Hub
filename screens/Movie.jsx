@@ -5,9 +5,9 @@ import FlatlistHorizontal from '../components/FlatlistHorizontal';
 import { SCRIPT_NEW_MOVIES } from '../utils/Scripts';
 import { ScrollView, View } from 'react-native';
 import Styles from '../utils/Styles';
-import HeaderOptions from './includes/HeaderOptions';
 import ExpandResults from './includes/ExpandResults';
 import Footer from './includes/Footer';
+import ActivityTemp from '../components/ActivityTemp';
 
 const Movie = () => {
     const [results, setResults] = useState(() => { return {
@@ -41,7 +41,6 @@ const Movie = () => {
             ))}
             {allDataLoaded ? (
                 <ScrollView style={Styles.ContainerView} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-                    <HeaderOptions title='TV Hub' />
                     {GENRES_MOVIES.slice(0, 5).map(({ key, title, url }) => (
                         <View key={key}>
                             <ExpandResults title={title} url={url} />
@@ -52,8 +51,7 @@ const Movie = () => {
                 </ScrollView>
             ) : (
                 <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute' }}>
-                    <HeaderOptions title='TV Hub' />
-                    {/* <ActivityTemp /> */}
+                    <ActivityTemp />
                 </View>
             )}
         </>

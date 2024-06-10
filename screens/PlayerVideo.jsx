@@ -26,7 +26,6 @@ const PlayerVideo = () => {
     }, []);
 
     if (url && service) {
-        // console.log(url);
         switch (service) {
             case 'mixdrop':
                 webPlayerProps = {

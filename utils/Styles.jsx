@@ -142,7 +142,6 @@ const Styles = StyleSheet.create({
         width: '100%',
         padding: 5,
         borderRadius: 10,
-        backgroundColor: theme.colors.elevation.level5,
     },
     CardContainer: {
         width: '100%',

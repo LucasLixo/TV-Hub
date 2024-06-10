@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import HeaderTitle from './includes/HeaderTitle';
+import React, { useEffect, useState } from 'react';
 import { FlatList, Image, Pressable, ScrollView, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Styles from '../utils/Styles';
@@ -37,6 +36,10 @@ const DetailsMovie = () => {
 
     const navigation = useNavigation();
     const data = route.params?.data;
+    
+    useEffect(() => {
+        navigation.setOptions({ title: data.title });
+    }, [data]);
 
     return (
         <>
@@ -44,7 +47,6 @@ const DetailsMovie = () => {
                 <>
                     {isDetails ? (
                         <ScrollView style={{ width: '100%', paddingLeft: 10 }} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-                            <HeaderTitle title={data.title} />
                             <View style={{ alignItems: 'center' }}>
                                 <Pressable onPress={() => setShowImage(!isShowImage)}>
                                     <Image
@@ -307,7 +309,6 @@ const DetailsMovie = () => {
                         </ScrollView>
                     ) : (
                         <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute' }}>
-                            <HeaderTitle title={data.title} />
                             <ActivityTemp />
                         </View>
                     )}
