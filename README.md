@@ -2,9 +2,9 @@
 
 TV Hub é um aplicativo que oferece uma vasta biblioteca de filmes e séries para você explorar e desfrutar. Com uma interface amigável e funcionalidades avançadas, você pode facilmente navegar, buscar e assistir seus conteúdos favoritos.
 
-## ⬇️ Baixe agora a versão 1.1.5
+## ⬇️ Baixe agora a versão 1.1.7
 
-[Download da versão 1.1.5](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.5)
+[Download da versão 1.1.7](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.7)
 
 ### Instruções de Atualização
 
