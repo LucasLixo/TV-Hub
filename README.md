@@ -26,7 +26,7 @@ Aqui estão alguns screenshots da nova versão:
 
 ## Licença
 
->[!Aviso]
+>[!Warning]
 >
 >Exceto o código-fonte licenciado sob a licença GPLv3,
 >todas as outras partes estão proibidas de usar o nome de TV hub como um aplicativo de streaming,
