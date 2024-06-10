@@ -24,7 +24,16 @@ const HeaderTitle = ({ title }) => {
                     onPress={() => navigation.goBack()}
                 />
                 <View style={{ width: '90%' }}>
-                    <Text variant="titleMedium" style={{ color: theme.colors.primary, textAlign: 'right', textTransform: 'capitalize' }}>
+                    <Text 
+                        variant="titleMedium" 
+                        style={{ 
+                            color: theme.colors.primary, 
+                            textAlign: 'right', 
+                            textTransform: 'capitalize'
+                        }}
+                        numberOfLines={1}
+                        ellipsizeMode='tail'
+                    >
                         {` ${title} ` || ''}
                     </Text>
                 </View>

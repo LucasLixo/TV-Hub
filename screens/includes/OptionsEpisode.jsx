@@ -44,7 +44,7 @@ const OptionsEpisode = ({ isModalVisible, setModalVisible, url, title }) => {
                     </Text>
                 </View>
                 <View style={[Styles.CardIn, { backgroundColor: 'transparent', flexDirection: 'row', justifyContent: 'space-between' }]}>
-                    <View style={{ flexDirection: 'column', width: '70%', backgroundColor: Colors.gray.a, borderRadius: 5 }}>
+                    <View style={{ flexDirection: 'column', width: '70%', backgroundColor: theme.colors.elevation.level5, borderRadius: 5 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <Pressable
                                 style={[Styles.CardContainer, { width: '80%' }]}
@@ -57,7 +57,7 @@ const OptionsEpisode = ({ isModalVisible, setModalVisible, url, title }) => {
                                 <Icon name='link' size={28}/>
                             </Pressable>
                         </View>
-                        <View style={[Styles.Hr, { borderBottomColor: Colors.gray.c }]} />
+                        <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <Pressable
                                 style={[Styles.CardContainer, { width: '80%' }]}
@@ -70,7 +70,7 @@ const OptionsEpisode = ({ isModalVisible, setModalVisible, url, title }) => {
                                 <Icon name='link' size={28}/>
                             </Pressable>
                         </View>
-                        <View style={[Styles.Hr, { borderBottomColor: Colors.gray.c }]} />
+                        <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <Pressable
                                 style={[Styles.CardContainer, { width: '80%' }]}
@@ -84,15 +84,15 @@ const OptionsEpisode = ({ isModalVisible, setModalVisible, url, title }) => {
                             </Pressable>
                         </View>
                     </View>
-                    <View style={{ width: '25%', justifyContent: 'center', alignItems: 'center', backgroundColor: Colors.gray.a, borderRadius: 5 }}>
+                    <View style={{ width: '25%', justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.elevation.level5, borderRadius: 5 }}>
                         <Pressable onPress={() => handleDownload(`mixdrop`)}>
                             <Icon name='download' size={28}/>
                         </Pressable>
-                        <View style={[Styles.Hr, { borderBottomColor: Colors.gray.c }]} />
+                        <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
                         <Pressable onPress={() => handleDownload(`filemoon`)}>
                             <Icon name='download' size={28}/>
                         </Pressable>
-                        <View style={[Styles.Hr, { borderBottomColor: Colors.gray.c }]} />
+                        <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
                         <Pressable onPress={() => handleDownload(`streamtape`)}>
                             <Icon name='download' size={28}/>
                         </Pressable>

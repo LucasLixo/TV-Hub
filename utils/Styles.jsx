@@ -1,7 +1,15 @@
 import { StyleSheet } from 'react-native';
 import {
-    MD3DarkTheme as theme,
+    MD3DarkTheme,
 } from 'react-native-paper';
+
+const theme = {
+    ...MD3DarkTheme,
+    colors: {
+        ...MD3DarkTheme.colors,
+        background: '#000000'
+    }
+};
 
 const Styles = StyleSheet.create({
     AreaView: {
@@ -27,7 +35,6 @@ const Styles = StyleSheet.create({
     },
     Header: {
         width: '100%',
-        height: 40,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
@@ -76,6 +83,7 @@ const Styles = StyleSheet.create({
         backgroundColor: theme.colors.elevation.level4,
     },
     FlatlistHorizontalTitle: {
+        backgroundColor: theme.colors.elevation.level1,
         position: 'absolute',
         width: '100%',
         padding: 5,
@@ -104,14 +112,13 @@ const Styles = StyleSheet.create({
         height: '100%',
         position: 'absolute',
         zIndex: -1,
-        backgroundColor: theme.colors.backdrop,
+        backgroundColor: '#000000CC',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
     },
     ContainerServices: {
         width: '100%',
-        height: 40,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

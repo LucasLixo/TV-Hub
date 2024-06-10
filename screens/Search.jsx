@@ -1,12 +1,13 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import WebScraping from '../components/web/WebScraping';
 import HeaderSearch from './includes/HeaderSearch';
-import { View, ScrollView, Pressable, Image } from 'react-native';
+import { View, ScrollView, Pressable } from 'react-native';
 import { encodeWithPlus } from '../utils/Fuctions';
 import {
-    MD3DarkTheme as theme,
+    MD3DarkTheme,
     Text,
-    Card
+    Card,
+    Button
 } from 'react-native-paper';
 import { GENRES_MOVIES, VIZER_SEARCH } from '../utils/Constants';
 import ActivityTemp from '../components/ActivityTemp';
@@ -15,6 +16,14 @@ import { SCRIPT_NEW_MOVIES, SCRIPT_PAGES } from '../utils/Scripts';
 import Styles from '../utils/Styles';
 import FlatlistVertical from '../components/FlatlistVertical';
 import Footer from './includes/Footer';
+
+const theme = {
+    ...MD3DarkTheme,
+    colors: {
+        ...MD3DarkTheme.colors,
+        background: '#000000'
+    }
+};
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -111,31 +120,27 @@ const Search = () => {
                             <>
                                 <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
                                     {state.TotalPage != 0 && state.Page > 1 && (
-                                        <Pressable
-                                            style={Styles.ButtonPage}
+                                        <Button
+                                            mode='contained'
                                             onPress={() => {
-                                                setLoaded(true);
+                                                setLoaded(true)
                                                 dispatch({ type: 'preview' })
                                             }}
                                         >
-                                            <Text variant="titleSmall">
-                                                {`Anterior`}
-                                            </Text>
-                                        </Pressable>
+                                            {`Anterior`}
+                                        </Button>
                                     )}
                                     <Text variant="titleSmall">{`Páginas: ${state.TotalPage}`}</Text>
                                     {state.TotalPage != 0 && state.Page !== state.TotalPage && (
-                                        <Pressable
-                                            style={Styles.ButtonPage}
+                                        <Button
+                                            mode='contained'
                                             onPress={() => {
-                                                setLoaded(true);
+                                                setLoaded(true)
                                                 dispatch({ type: 'next' })
                                             }}
                                         >
-                                            <Text variant="titleSmall">
-                                                {`Próximo`}
-                                            </Text>
-                                        </Pressable>
+                                            {`Próximo`}
+                                        </Button>
                                     )}
                                 </View>
                                 <View style={Styles.Hr} />

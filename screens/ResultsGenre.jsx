@@ -4,9 +4,10 @@ import { useRoute } from '@react-navigation/native';
 import ActivityTemp from '../components/ActivityTemp';
 import FlatlistVertical from '../components/FlatlistVertical';
 import {
-    Text
+    Text,
+    Button,
 } from 'react-native-paper';
-import { Pressable, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import Styles from '../utils/Styles';
 import WebScraping from '../components/web/WebScraping';
 import { SCRIPT_NEW_MOVIES, SCRIPT_PAGES } from '../utils/Scripts';
@@ -83,31 +84,27 @@ const Search = () => {
                                 {state.TotalPage !== null && (
                                     <>
                                         {state.TotalPage != 0 && state.Page > 1 && (
-                                            <Pressable
-                                                style={Styles.ButtonPage}
+                                            <Button
+                                                mode='contained'
                                                 onPress={() => {
                                                     setLoadResults(true)
                                                     dispatch({ type: 'preview' })
                                                 }}
                                             >
-                                                <Text variant="titleSmall">
-                                                    {`Anterior`}
-                                                </Text>
-                                            </Pressable>
+                                                {`Anterior`}
+                                            </Button>
                                         )}
                                         <Text variant="titleSmall">{`Páginas: ${state.TotalPage}`}</Text>
                                         {state.TotalPage != 0 && state.Page !== state.TotalPage && (
-                                            <Pressable
-                                                style={Styles.ButtonPage}
+                                            <Button
+                                                mode='contained'
                                                 onPress={() => {
                                                     setLoadResults(true)
                                                     dispatch({ type: 'next' })
                                                 }}
                                             >
-                                                <Text variant="titleSmall">
-                                                    {`Próximo`}
-                                                </Text>
-                                            </Pressable>
+                                                {`Próximo`}
+                                            </Button>
                                         )}
                                     </>
                                 )}

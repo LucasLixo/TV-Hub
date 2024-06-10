@@ -8,9 +8,8 @@ import { SCRIPT_DETAILS_MOVIES, SCRIPT_EPISODES } from '../utils/Scripts';
 import ActivityTemp from '../components/ActivityTemp';
 import ShowModalData from '../components/ShowModalData';
 import {
-    MD3DarkTheme as theme,
     Text,
-    Icon
+    Button,
 } from 'react-native-paper';
 import OptionsPlayer from './includes/OptionsPlayer';
 import OptionsDownload from './includes/OptionsDownload';
@@ -86,28 +85,22 @@ const DetailsMovie = () => {
                                             showsHorizontalScrollIndicator={false}
                                             showsVerticalScrollIndicator={false}
                                             renderItem={({ item, index }) => {
-                                                const backgroundColor = isSelectedIndex === index ? theme.colors.primary : theme.colors.elevation.level4;
+                                                const modeButton = isSelectedIndex === index ? 'contained' : 'outlined';
 
                                                 return (
-                                                    <Pressable
-                                                        style={{
-                                                            height: '100%',
-                                                            paddingHorizontal: 10,
-                                                            borderRadius: 10,
-                                                            backgroundColor,
-                                                            justifyContent: 'center',
-                                                            marginRight: 10
-                                                        }}
+                                                    <Button
+                                                        mode={modeButton}
                                                         onPress={() => {
                                                             setSelectedIndex(index);
                                                             setLoadEpsisodes(true);
                                                             setSeasonLink(`?temporada=${index + 1}`);
                                                         }}
+                                                        style={{
+                                                            marginRight: 10
+                                                        }}
                                                     >
-                                                        <Text variant="titleSmall">
-                                                            {item.title}
-                                                        </Text>
-                                                    </Pressable>
+                                                        {item.title}
+                                                    </Button>
                                                 )
                                             }}
                                         />
@@ -138,33 +131,23 @@ const DetailsMovie = () => {
                                                     <View style={[Styles.ContainerServices, { paddingRight: 0 }]}>
                                                         <FlatList
                                                             data={isEpsisodes}
-                                                            style={{
-                                                                height: '100%',
-                                                            }}
                                                             keyExtractor={(item, index) => `episode-${index}-${item.title}`}
                                                             horizontal={true}
                                                             showsHorizontalScrollIndicator={false}
                                                             showsVerticalScrollIndicator={false}
                                                             renderItem={({ item, index }) => (
-                                                                <Pressable
-                                                                    style={{
-                                                                        height: '100%',
-                                                                        flexDirection: 'row',
-                                                                        paddingHorizontal: 10,
-                                                                        borderRadius: 10,
-                                                                        backgroundColor: theme.colors.primary,
-                                                                        alignItems: 'center',
-                                                                        marginRight: 10
-                                                                    }}
+                                                                <Button
+                                                                    mode='contained'
                                                                     onPress={() => {
                                                                         setUrlPD(item.link.replace(/\s+/g, '').replace(/.*:\/\//, 'https://'))
                                                                         setModalEpisode(!isModalEpisode)
                                                                     }}
+                                                                    style={{
+                                                                        marginRight: 10
+                                                                    }}
                                                                 >
-                                                                    <Text variant="titleSmall">
-                                                                        {`Episódio ${index + 1} `}
-                                                                    </Text>
-                                                                </Pressable>
+                                                                    {`Episódio ${index + 1} `}
+                                                                </Button>
                                                             )}
                                                         />
                                                     </View>
@@ -177,20 +160,20 @@ const DetailsMovie = () => {
                                 <>
                                     <View style={Styles.Hr} />
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingRight: 10 }}>
-                                        <Text variant="titleSmall">
-                                            {'Assistir'}
-                                        </Text>
-                                        <Text variant="titleSmall">
-                                            {'Baixar'}
-                                        </Text>
-                                    </View>
-                                    <View style={Styles.ContainerServices}>
-                                        <Pressable style={Styles.ContainerServicesPressable} onPress={() => setShowPlayer(!isShowPlayer)}>
-                                            <Icon source="play" size={32} />
-                                        </Pressable>
-                                        <Pressable style={Styles.ContainerServicesPressable} onPress={() => setShowDownload(!isShowDownload)}>
-                                            <Icon source="download" size={32} />
-                                        </Pressable>
+                                        <Button
+                                            mode='contained'
+                                            onPress={() => setShowPlayer(!isShowPlayer)}
+                                            icon='play'
+                                        >
+                                            {`Assistir`}
+                                        </Button>
+                                        <Button
+                                            mode='contained'
+                                            onPress={() => setShowDownload(!isShowDownload)}
+                                            icon='download'
+                                        >
+                                            {`Baixar`}
+                                        </Button>
                                     </View>
                                 </>
                             )}
@@ -203,29 +186,18 @@ const DetailsMovie = () => {
                                     <View style={[Styles.ContainerServices, { paddingRight: 0 }]}>
                                         <FlatList
                                             data={isDetails.genres}
-                                            style={{
-                                                height: '100%',
-                                            }}
                                             keyExtractor={(item, index) => `genre-${index}-${item.title}`}
                                             horizontal={true}
                                             showsHorizontalScrollIndicator={false}
                                             showsVerticalScrollIndicator={false}
-                                            renderItem={({ item, index }) => (
-                                                <Pressable
-                                                    style={{
-                                                        height: '100%',
-                                                        paddingHorizontal: 10,
-                                                        borderRadius: 10,
-                                                        backgroundColor: theme.colors.onPrimary,
-                                                        justifyContent: 'center',
-                                                        marginRight: 10
-                                                    }}
+                                            renderItem={({ item }) => (
+                                                <Button
+                                                    mode='contained-tonal'
+                                                    style={{ marginRight: 10 }}
                                                     onPress={() => navigation.navigate('ResultsGenre', { title: item.title, url: item.link })}
                                                 >
-                                                    <Text variant="titleSmall">
-                                                        {item.title}
-                                                    </Text>
-                                                </Pressable>
+                                                    {item.title}
+                                                </Button>
                                             )}
                                         />
                                     </View>
@@ -234,11 +206,11 @@ const DetailsMovie = () => {
                             {isDetails.title && (
                                 <>
                                     <View style={Styles.Hr} />
-                                    <Text variant="titleSmall">
-                                        {'Titulo original\n'}
-                                        <Text type='description'>
-                                            {isDetails.title}
-                                        </Text>
+                                    <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                        {'Titulo original'}
+                                    </Text>
+                                    <Text variant='titleSmall'>
+                                        {isDetails.title}
                                     </Text>
                                 </>
                             )}
@@ -247,65 +219,57 @@ const DetailsMovie = () => {
                                 style={{ flexDirection: 'column' }}
                             >
                                 <View style={Styles.Hr} />
+                                <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                    {`Sinopse`}
+                                </Text>
                                 <Text
-                                    variant="titleSmall"
+                                    variant='titleSmall'
                                     numberOfLines={5}
                                     ellipsizeMode='tail'
                                 >
-                                    {`Sinopse\n`}
-                                    <Text type='description'>
-                                        {isDetails.sinopse.replace('Ler mais...', '')}
-                                    </Text>
+                                    {isDetails.sinopse.replace('Ler mais...', '')}
                                 </Text>
                             </Pressable>
                             <View style={Styles.Hr} />
-                            <Text variant="titleSmall">
-                                {`Duração\n`}
-                                <Text type='description'>
-                                    {data.time}
-                                </Text>
+                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                {`Duração`}
+                            </Text>
+                            <Text variant='titleSmall'>
+                                {data.time}
                             </Text>
                             <View style={Styles.Hr} />
-                            <Text variant="titleSmall">
-                                {`Diretor\n`}
-                                <Text type='description'>
-                                    {isDetails.diretor.replace(/<b>.*?<\/b> /g, '')}
-                                </Text>
+                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                {`Diretor`}
+                            </Text>
+                            <Text variant='titleSmall'>
+                                {isDetails.diretor.replace(/<b>.*?<\/b> /g, '')}
                             </Text>
                             <View style={Styles.Hr} />
-                            <Text variant="titleSmall">
-                                {`Elenco\n`}
-                                <Text type='description'>
-                                    {isDetails.elenco.replace(/<b>.*?<\/b> /g, '')}
-                                </Text>
+                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                {`Elenco`}
                             </Text>
-                            <View style={Styles.Hr} />
-                            <Text variant="titleSmall">
-                                {`Produtor\n`}
-                                <Text type='description'>
-                                    {isDetails.produtor.replace(/<b>.*?<\/b> /g, '')}
-                                </Text>
-                            </Text>
-                            <View style={Styles.Hr} />
-                            <Pressable
-                                style={{
-                                    backgroundColor: theme.colors.onPrimary,
-                                    paddingVertical: 5,
-                                    paddingHorizontal: 10,
-                                    borderRadius: 10,
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                }}
-                                onPress={() => navigation.navigate('Comments', { url: isDetails.comments })}
+                            <Text
+                                variant='titleSmall'
+                                numberOfLines={3}
+                                ellipsizeMode='tail'
                             >
-                                <>
-                                    <Text variant="titleSmall">
-                                        {` Comentários`}
-                                    </Text>
-                                    <Icon source='chat-processing' size={32} />
-                                </>
-                            </Pressable>
+                                {isDetails.elenco.replace(/<b>.*?<\/b> /g, '')}
+                            </Text>
+                            <View style={Styles.Hr} />
+                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                {`Produtor`}
+                            </Text>
+                            <Text variant='titleSmall'>
+                                {isDetails.produtor.replace(/<b>.*?<\/b> /g, '')}
+                            </Text>
+                            <View style={Styles.Hr} />
+                            <Button
+                                mode='contained'
+                                onPress={() => navigation.navigate('Comments', { url: isDetails.comments })}
+                                icon='chat-processing'
+                            >
+                                {`Comentários`}
+                            </Button>
                             <View style={Styles.Hr} />
                             <ShowModalData
                                 isModalVisible={isShowMessage}

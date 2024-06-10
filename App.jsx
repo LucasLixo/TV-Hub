@@ -12,7 +12,7 @@ import {
 } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import {
-    MD3DarkTheme as theme,
+    MD3DarkTheme,
     PaperProvider,
 } from 'react-native-paper';
 import Styles from './utils/Styles';
@@ -23,6 +23,14 @@ import DetailsMovie from './screens/DetailsMovie';
 import Comments from './screens/Comments';
 import PlayerVideo from './screens/PlayerVideo';
 import Download from './screens/Download';
+
+const theme = {
+    ...MD3DarkTheme,
+    colors: {
+        ...MD3DarkTheme.colors,
+        background: '#000000'
+    }
+};
 
 const Stack = createStackNavigator();
 
@@ -54,31 +62,34 @@ export default function App() {
 
     const isConnected = useInternetConnection();
 
-    return isConnected ? (
-        <NavigationContainer theme={theme}>
-            <PaperProvider theme={theme}>
+    return (
+        <PaperProvider theme={theme}>
+            {isConnected ? (
+                <NavigationContainer theme={theme}>
+                    <SafeAreaView style={Styles.AreaView}>
+                        <Stack.Navigator
+                            screenOptions={{
+                                headerShown: false,
+                                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                            }}
+                            initialRouteName='Movie'
+                        >
+                            <Stack.Screen name="Movie" component={Movie} />
+                            <Stack.Screen name="Search" component={Search} />
+                            <Stack.Screen name="ResultsGenre" component={ResultsGenre}/>
+                            <Stack.Screen name="DetailsMovie" component={DetailsMovie} />
+                            <Stack.Screen name="Comments" component={Comments} />
+                            <Stack.Screen name="PlayerVideo" component={PlayerVideo} />
+                            <Stack.Screen name="Download" component={Download} />
+                        </Stack.Navigator>
+                    </SafeAreaView>
+                </NavigationContainer>
+            ) : (
                 <SafeAreaView style={Styles.AreaView}>
-                    <Stack.Navigator
-                        screenOptions={{
-                            headerShown: false,
-                            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                        }}
-                        initialRouteName='Movie'
-                    >
-                        <Stack.Screen name="Movie" component={Movie} />
-                        <Stack.Screen name="Search" component={Search} />
-                        <Stack.Screen name="ResultsGenre" component={ResultsGenre} />
-                        <Stack.Screen name="DetailsMovie" component={DetailsMovie} />
-                        <Stack.Screen name="Comments" component={Comments} />
-                        <Stack.Screen name="PlayerVideo" component={PlayerVideo} />
-                        <Stack.Screen name="Download" component={Download} />
-                    </Stack.Navigator>
+                    <ActivityErro textError='SEM CONEXÃO COM A INTERNET' />
                 </SafeAreaView>
-            </PaperProvider>
-        </NavigationContainer>
-    ) : (
-        <SafeAreaView style={Styles.AreaView}>
-            <ActivityErro textError='SEM CONEXÃO COM A INTERNET' />
-        </SafeAreaView>
-    );
+            )}
+        </PaperProvider>
+    )
+
 }

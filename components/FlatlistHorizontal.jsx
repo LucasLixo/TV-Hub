@@ -55,7 +55,7 @@ const FlatlistHorizontal = ({ data }) => {
                                 {item.time}
                             </Text>
                         </View>
-                        <View style={[Styles.FlatlistHorizontalTitle, {  backgroundColor: theme.colors.elevation.level4 }]}>
+                        <View style={Styles.FlatlistHorizontalTitle}>
                             <Text variant="titleSmall" numberOfLines={1} ellipsizeMode='tail'>
                                 {item.title}
                             </Text>

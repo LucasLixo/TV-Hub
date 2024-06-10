@@ -5,8 +5,16 @@ import {
     View,
 } from "react-native";
 import {
-    MD3DarkTheme as theme,
+    MD3DarkTheme,
 } from 'react-native-paper';
+
+const theme = {
+    ...MD3DarkTheme,
+    colors: {
+        ...MD3DarkTheme.colors,
+        background: '#000000'
+    }
+};
 
 const ShowModalBottom = ({ isModalVisible, setModalVisible, children }) => {
     const handleClose = () => {
