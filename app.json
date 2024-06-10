@@ -1,8 +1,8 @@
 {
     "expo": {
         "name": "TV Hub",
-        "slug": "tv-hexub",
-        "version": "1.1.7 (Cornflower)",
+        "slug": "tv-hub",
+        "version": "1.1.7",
         "icon": "./assets/icon.png",
         "splash": {
             "image": "./assets/splash.png",
@@ -26,8 +26,7 @@
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#000000"
-            },
-            "package": "com.cornflower.tvhub"
+            }
         },
         "web": {
             "favicon": "./assets/favicon.png"

@@ -1,4 +1,4 @@
-package com.tvhub
+package com.cornflower.tvhub
 
 import android.os.Build
 import android.os.Bundle

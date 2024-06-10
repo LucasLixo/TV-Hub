@@ -1,4 +1,4 @@
-package com.tvhub
+package com.cornflower.tvhub
 
 import android.app.Application
 import android.content.res.Configuration
