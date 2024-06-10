@@ -1,7 +1,7 @@
 {
     "expo": {
         "name": "TV Hub",
-        "slug": "TV-Hub",
+        "slug": "tv-hexub",
         "version": "1.1.7 (Cornflower)",
         "icon": "./assets/icon.png",
         "splash": {
