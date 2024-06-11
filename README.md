@@ -17,11 +17,14 @@ TV Hub é um aplicativo que oferece uma vasta biblioteca de filmes e séries par
 Aqui estão alguns screenshots da nova versão:
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-  <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/6fc0c4f8-f78c-40be-aecd-ac0275c9fcfe" alt="Screenshot 1" style="margin: 1px;" width="19%" />
-  <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/6373aec9-040f-4cfd-90f0-57ce9203dc4c" alt="Screenshot 2" style="margin: 1px;" width="19%" />
-  <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/ffcf62aa-c392-45f9-807e-4fc40e242886" alt="Screenshot 4" style="margin: 1px;" width="19%" />
-  <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/b9c98d78-f627-4f85-ad39-01c81ca8dc99" alt="Screenshot 8" style="margin: 1px;" width="19%" />
-  <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/809e7369-078c-4113-bf08-9f63ba43ca85" alt="Screenshot 7" style="margin: 1px;" width="19%" />
+    <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/0366d398-ade8-4205-b09a-e7f0ea054591"
+        alt="Screenshot 1" width="19%" style="margin: 1px;" />
+    <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/9905cf60-9fde-4e86-a61d-c72b0052ec4c"
+        alt="Screenshot 2" width="19%" style="margin: 1px;" />
+    <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/08e95e8f-e1cf-4993-9d92-ff2212ab87d5"
+        alt="Screenshot 3" width="19%" style="margin: 1px;" />
+    <img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/27d6ed86-9aa8-4cfb-abf6-cb69650f2e62"
+        alt="Screenshot 4" width="19%" style="margin: 1px;" />
 </div>
 
 ## Licença
