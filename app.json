@@ -10,6 +10,7 @@
         "platforms": [
             "android"
         ],
+        "backgroundColor": "#000000",
         "orientation": "portrait",
         "plugins": [
             [

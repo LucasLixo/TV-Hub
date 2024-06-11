@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import NetInfo from '@react-native-community/netinfo';
 import ActivityErro from './components/ActivityErro';
 import {
-    // setStatusBarBackgroundColor,
+    setStatusBarBackgroundColor,
     setStatusBarHidden,
     setStatusBarStyle,
     setStatusBarTranslucent
@@ -73,6 +73,7 @@ const SearchHeader = ({ navigation }) => {
 
 export default function App() {
     useEffect(() => {
+        setStatusBarBackgroundColor(theme.colors.elevation.level5, true);
         setStatusBarHidden(false, 'none');
         setStatusBarStyle('light');
         setStatusBarTranslucent(true);
