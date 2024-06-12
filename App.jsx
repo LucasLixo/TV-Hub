@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import NetInfo from '@react-native-community/netinfo';
 import ActivityErro from './components/ActivityErro';
 import {
@@ -10,7 +11,6 @@ import {
     setStatusBarStyle,
     setStatusBarTranslucent
 } from 'expo-status-bar';
-import * as SystemUI from 'expo-system-ui';
 import {
     IconButton,
     MD3DarkTheme,
@@ -73,11 +73,11 @@ const SearchHeader = ({ navigation }) => {
 
 export default function App() {
     useEffect(() => {
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
         setStatusBarBackgroundColor(theme.colors.elevation.level5, true);
         setStatusBarHidden(false, 'none');
         setStatusBarStyle('light');
         setStatusBarTranslucent(true);
-        SystemUI.setBackgroundColorAsync(theme.colors.background);
     }, []);
 
     const isConnected = useInternetConnection();

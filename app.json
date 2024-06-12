@@ -4,13 +4,11 @@
         "slug": "tv-hub",
         "version": "1.1.8",
         "splash": {
-            "resizeMode": "contain",
-            "backgroundColor": "#000000"
+            "resizeMode": "contain"
         },
         "platforms": [
             "android"
         ],
-        "backgroundColor": "#000000",
         "orientation": "portrait",
         "plugins": [
             [
