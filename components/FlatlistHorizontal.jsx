@@ -19,7 +19,7 @@ const FlatlistHorizontal = ({ data }) => {
         <FlatList
             data={data}
             style={{ marginTop: 15 }}
-            keyExtractor={(item, index) => "#" + index.toString()}
+            keyExtractor={(index) => "#" + index.toString()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => {
