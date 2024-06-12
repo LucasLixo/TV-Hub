@@ -29,4 +29,4 @@ Aqui estão alguns screenshots da nova versão:
 >todas as outras partes estão proibidas de usar o nome de TV hub como um aplicativo de streaming,
 >Os derivados incluem, mas não estão limitados a, forks e versões não oficiais.
 
-[![GitHub](https://img.shields.io/github/license/JunkFood02/Seal?style=for-the-badge)](https://github.com/LucasLixo/TV-Hub/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/github/license/LucasLixo/TV-Hub?style=for-the-badge)](https://github.com/LucasLixo/TV-Hub/blob/main/LICENSE)
