@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="" src="assets/icon.png"  width=160 height=160  align="center">
+<img src="assets/icon.png"  width=160 height=160  align="center">
 
 # TV Hub
 
@@ -17,10 +17,10 @@
 
 <div align="center">
 <div>
-<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/0366d398-ade8-4205-b09a-e7f0ea054591" width="30%" />
-<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/9905cf60-9fde-4e86-a61d-c72b0052ec4c" width="30%" />
-<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/08e95e8f-e1cf-4993-9d92-ff2212ab87d5" width="30%" />
-<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/27d6ed86-9aa8-4cfb-abf6-cb69650f2e62" width="30%" />
+<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/0366d398-ade8-4205-b09a-e7f0ea054591" width="19%" />
+<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/9905cf60-9fde-4e86-a61d-c72b0052ec4c" width="19%" />
+<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/08e95e8f-e1cf-4993-9d92-ff2212ab87d5" width="19%" />
+<img src="https://github.com/LucasLixo/TV-Hub/assets/104840846/27d6ed86-9aa8-4cfb-abf6-cb69650f2e62" width="19%" />
 </div>
 </div>
 
