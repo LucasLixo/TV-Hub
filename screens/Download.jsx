@@ -50,7 +50,7 @@ const Download = () => {
             setStatus(response.status);
             setHeaders(response.headers.map);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 

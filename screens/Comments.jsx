@@ -14,7 +14,7 @@ const Comments = () => {
                 <WebIframe
                     isUrl={url}
                     isInjectedJavaScript={SCRIPT_DISQUS}
-                    setHandleErro={() => console.log()}
+                    // setHandleErro={() => console.log()}
                 />
             </View>
         </>

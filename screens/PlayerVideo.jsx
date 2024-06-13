@@ -56,7 +56,7 @@ const PlayerVideo = () => {
                         <WebPlayer
                             {...webPlayerProps}
                             setHandleVideo={(state) => setVideoState(state)}
-                            setHandleErro={(results) => console.log(results)}
+                            // setHandleErro={(results) => console.log(results)}
                         />
                     ) : (
                         <ActivityErro textError='Sem Video' />
