@@ -6,7 +6,12 @@ const WebScraping = ({ isUrl, isInjectedJavaScript, setHandleMessage }) => {
     
     return (
         <WebView
-            source={{ uri: isUrl }}
+            source={{
+                uri: isUrl,
+                headers: {
+                    'User-Agent': USER_AGENT_IPHONE,
+                }
+            }}
             style={{ flex: 0, height: 0, width: 0, position: 'absolute' }}
             // javaScript Enabled
             javaScriptEnabled={true}

@@ -5,9 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 import ShowModalFade from '../../components/ShowModalFade';
 import Styles from '../../utils/Styles';
 import {
-    MD3DarkTheme as theme,
     Text,
-    Button
+    Button,
+    Divider
 } from 'react-native-paper';
 
 const OptionsPlayer = ({ isModalVisible, setModalVisible, url }) => {
@@ -37,7 +37,7 @@ const OptionsPlayer = ({ isModalVisible, setModalVisible, url }) => {
                     >
                         {`Mixdrop`}
                     </Button>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Divider style={{ marginVertical: 5 }} />
                     <Button
                         mode='contained'
                         onLongPress={() => clipboardToast(`${extractedUrl}&sv=filemoon`)}
@@ -45,7 +45,7 @@ const OptionsPlayer = ({ isModalVisible, setModalVisible, url }) => {
                     >
                         {`Filemoon`}
                     </Button>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Divider style={{ marginVertical: 5 }} />
                     <Button
                         mode='contained'
                         onLongPress={() => clipboardToast(`${extractedUrl}&sv=streamtape`)}

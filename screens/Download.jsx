@@ -6,7 +6,8 @@ import { SCRIPT_EXTRACT_FILEMOON, SCRIPT_EXTRACT_MIXDROP, SCRIPT_EXTRACT_STREAMT
 import { Linking, Pressable, View } from 'react-native';
 import Styles from '../utils/Styles';
 import {
-    Text
+    Text,
+    Divider,
 } from 'react-native-paper';
 import { clipboardToast } from '../utils/Fuctions';
 
@@ -38,7 +39,7 @@ const Download = () => {
     }, [service]);
 
     const navigation = useNavigation();
-    
+
     useEffect(() => {
         navigation.setOptions({ title: `Baixar: ${title}` });
     }, [title]);
@@ -78,18 +79,20 @@ const Download = () => {
         <View style={{ flex: 1, width: '100%', height: '100%' }}>
             {(urlVideo && urlVideo !== '') ? (
                 <View style={{ flex: 1, flexDirection: 'column', padding: 10 }}>
-                    <View style={Styles.CardContainer}>
-                        <Text variant="titleSmall">{`Status`}</Text>
-                        <Text variant="titleSmall">{status}</Text>
-                    </View>
-                    <View style={Styles.Hr} />
+                    {status && (
+                        <View style={Styles.CardContainer}>
+                            <Text variant="titleSmall">{`Status`}</Text>
+                            <Text variant="titleSmall">{status}</Text>
+                            <Divider style={{ marginVertical: 5 }} />
+                        </View>
+                    )}
                     {headers && headers['content-type'] && (
                         <>
                             <View style={Styles.CardContainer}>
                                 <Text variant="titleSmall">{`Extensão`}</Text>
                                 <Text variant="titleSmall">{headers['content-type']}</Text>
                             </View>
-                            <View style={Styles.Hr} />
+                            <Divider style={{ marginVertical: 5 }} />
                         </>
                     )}
                     {headers && headers['content-length'] && (
@@ -98,7 +101,7 @@ const Download = () => {
                                 <Text variant="titleSmall">{`Tamanho`}</Text>
                                 <Text variant="titleSmall">{`${Math.round(parseInt(headers['content-length']) / (1024 * 1024))}mb`}</Text>
                             </View>
-                            <View style={Styles.Hr} />
+                            <Divider style={{ marginVertical: 5 }} />
                         </>
                     )}
                     <View style={[Styles.CardContainer, { height: 40 }]}>
@@ -106,7 +109,7 @@ const Download = () => {
                             <Text variant="titleSmall">{`Copiar Link`}</Text>
                         </Pressable>
                     </View>
-                    <View style={Styles.Hr} />
+                    <Divider style={{ marginVertical: 5 }} />
                     <View style={[Styles.CardContainer, { height: 40 }]}>
                         <Pressable style={[Styles.CardContainerButton, { width: '100%' }]} onPress={() => openUrl(urlVideo)}>
                             <Text variant="titleSmall">{`Baixar Video com ADM`}</Text>

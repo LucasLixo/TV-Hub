@@ -6,7 +6,8 @@ import Styles from '../../utils/Styles';
 import {
     MD3DarkTheme as theme,
     Text,
-    Button
+    Button,
+    Divider
 } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
@@ -36,14 +37,14 @@ const OptionsDownload = ({ isModalVisible, setModalVisible, url, title }) => {
                     >
                         {`Mixdrop`}
                     </Button>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Divider style={{ marginVertical: 5 }} />
                     <Button
                         mode='contained'
                         onPress={() => handleDownload('filemoon')}
                     >
                         {`Filemoon`}
                     </Button>
-                    <View style={[Styles.Hr, { borderBottomColor: theme.colors.elevation.level3 }]} />
+                    <Divider style={{ marginVertical: 5 }} />
                     <Button
                         mode='contained'
                         onPress={() => handleDownload('streamtape')}

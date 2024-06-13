@@ -26,13 +26,6 @@ const Styles = StyleSheet.create({
         paddingBottom: 10,
         flexDirection: 'column',
     },
-    Hr: {
-        width: '95%',
-        marginHorizontal: 'auto',
-        marginVertical: 5,
-        borderBottomColor: theme.colors.backdrop,
-        borderBottomWidth: 1,
-    },
     Header: {
         width: '100%',
         flexDirection: 'row',
@@ -58,7 +51,7 @@ const Styles = StyleSheet.create({
     FlatlistHorizontal: {
         width: 160,
         height: 240,
-        backgroundColor: theme.colors.elevation.level5,
+        backgroundColor: theme.colors.inversePrimary,
         position: 'relative',
         overflow: 'hidden',
         borderRadius: 5,
@@ -90,15 +83,10 @@ const Styles = StyleSheet.create({
         bottom: 0,
         left: 0,
     },
-    DetailsTop: {
-        paddingRight: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
     FlatlistVertical: {
         width: 160,
         height: 240,
-        backgroundColor: theme.colors.elevation.level5,
+        backgroundColor: theme.colors.inversePrimary,
         position: 'relative',
         overflow: 'hidden',
         borderRadius: 5,
@@ -123,14 +111,6 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingRight: 10,
-    },
-    ContainerServicesPressable: {
-        width: '30%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        backgroundColor: theme.colors.onPrimary,
     },
     CardOut: {
         width: '100%',
@@ -159,14 +139,6 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    ButtonPage: {
-        borderRadius: 10, 
-        marginRight: 10, 
-        paddingHorizontal: 10, 
-        height: '100%', 
-        justifyContent: 'center', 
-        backgroundColor: theme.colors.onPrimary,
-    }
 });
 
 // Export

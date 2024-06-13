@@ -6,7 +6,8 @@ import {
     MD3DarkTheme,
     Text,
     Card,
-    Button
+    Button,
+    Divider,
 } from 'react-native-paper';
 import { GENRES_MOVIES, VIZER_SEARCH } from '../utils/Constants';
 import ActivityTemp from '../components/ActivityTemp';
@@ -15,6 +16,7 @@ import { SCRIPT_NEW_MOVIES, SCRIPT_PAGES } from '../utils/Scripts';
 import Styles from '../utils/Styles';
 import FlatlistVertical from '../components/FlatlistVertical';
 import Footer from './includes/Footer';
+import uuid from 'react-native-uuid';
 
 const theme = {
     ...MD3DarkTheme,
@@ -147,12 +149,12 @@ const Search = () => {
                                         </Button>
                                     )}
                                 </View>
-                                <View style={Styles.Hr} />
+                                <Divider style={{ marginVertical: 5 }} />
                                 <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
                                     <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
                                     <Text variant="titleSmall">{`Página: ${state.Page}`}</Text>
                                 </View>
-                                <View style={Styles.Hr} />
+                                <Divider style={{ marginVertical: 5 }} />
                                 <FlatlistVertical data={isResults} />
                                 <Footer />
                             </>
@@ -162,7 +164,7 @@ const Search = () => {
                     <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
                         {GENRES_MOVIES.map(({ key, title, url }) => (
                             <Pressable
-                                key={key}
+                                key={uuid.v4()}
                                 style={{
                                     width: '40%',
                                     height: 160,

@@ -1,6 +1,6 @@
 import React from 'react';
 import WebView from 'react-native-webview';
-import { USER_AGENT_WINDOWS } from '../../utils/Constants';
+import { USER_AGENT_ANDROID } from '../../utils/Constants';
 import Styles from '../../utils/Styles';
 import { DOMAINS } from '../../utils/Constants';
 
@@ -36,7 +36,12 @@ const WebPlayer = ({ isUrl, isInjectedJavaScript, setHandleErro, setHandleVideo 
 
     return (
         <WebView
-            source={{ uri: isUrl }}
+            source={{
+                uri: isUrl,
+                headers: {
+                    'User-Agent': USER_AGENT_ANDROID,
+                }
+            }}
             style={Styles.WebView}
             // javaScript Enabled
             javaScriptEnabled={true}
@@ -57,7 +62,7 @@ const WebPlayer = ({ isUrl, isInjectedJavaScript, setHandleErro, setHandleVideo 
             // start In Loading State
             startInLoadingState={false}
             // userAgent
-            userAgent={USER_AGENT_WINDOWS}
+            userAgent={USER_AGENT_ANDROID}
             // allows Protected Media
             allowsProtectedMedia={true}
             allowsFullscreenVideo={true}

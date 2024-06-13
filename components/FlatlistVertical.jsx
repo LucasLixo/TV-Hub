@@ -10,19 +10,20 @@ import {
     Text,
 } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import uuid from 'react-native-uuid';
 
 const FlatlistVertical = ({ data }) => {
     const navigation = useNavigation();
     const items = [];
 
-    data.forEach((item, index) => {
+    data.forEach((item) => {
         const cleanImgUrl = item.img.replace(/\s+/g, '').replace(/.*:\/\//, 'https://');
         const cleanUrl = item.url.replace(/\s+/g, '').replace(/.*:\/\//, 'https://');
 
         items.push(
             <Pressable
-                key={`#${index.toString()}`}
                 style={Styles.FlatlistVertical}
+                key={uuid.v4()}
                 onPress={() => {
                     navigation.navigate('DetailsMovie', {
                         data: {

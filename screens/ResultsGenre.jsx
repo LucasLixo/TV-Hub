@@ -5,6 +5,7 @@ import FlatlistVertical from '../components/FlatlistVertical';
 import {
     Text,
     Button,
+    Divider,
 } from 'react-native-paper';
 import { ScrollView, View } from 'react-native';
 import Styles from '../utils/Styles';
@@ -108,7 +109,7 @@ const Search = () => {
                                             )}
                                         </>
                                     </View>
-                                    <View style={Styles.Hr} />
+                                    <Divider style={{ marginVertical: 5 }} />
                                 </>
                             )}
                             {state.TotalPage !== null && (
@@ -117,7 +118,7 @@ const Search = () => {
                                     <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
                                         <Text variant="titleSmall">{`Página: ${state.Page}`}</Text>
                                     </View>
-                                    <View style={Styles.Hr} />
+                                    <Divider style={{ marginVertical: 5 }} />
                                 </>
                             )}
                             {isResults && isResults.length > 0 && (

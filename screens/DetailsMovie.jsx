@@ -9,6 +9,7 @@ import ShowModalData from '../components/ShowModalData';
 import {
     Text,
     Button,
+    Divider,
 } from 'react-native-paper';
 import OptionsPlayer from './includes/OptionsPlayer';
 import OptionsDownload from './includes/OptionsDownload';
@@ -72,8 +73,8 @@ const DetailsMovie = () => {
                             </View>
                             {isDetails.season && isDetails.season.length > 0 ? (
                                 <>
-                                    <View style={Styles.Hr} />
-                                    <Text variant="titleSmall">
+                                    <Divider style={{ marginVertical: 5 }} />
+                                    <Text variant="titleMedium">
                                         {'Temporadas'}
                                     </Text>
                                     <View style={[Styles.ContainerServices, { paddingRight: 0 }]}>
@@ -120,8 +121,8 @@ const DetailsMovie = () => {
                                     />
                                     {isEpsisodes && isEpsisodes.length > 0 && (
                                         <>
-                                            <View style={Styles.Hr} />
-                                            <Text variant="titleSmall">
+                                            <Divider style={{ marginVertical: 5 }} />
+                                            <Text variant="titleMedium">
                                                 {'Episódios'}
                                             </Text>
                                             {isLoadEpsisodes ? (
@@ -160,7 +161,7 @@ const DetailsMovie = () => {
                                 </>
                             ) : (
                                 <>
-                                    <View style={Styles.Hr} />
+                                    <Divider style={{ marginVertical: 5 }} />
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingRight: 10 }}>
                                         <Button
                                             mode='contained'
@@ -181,8 +182,8 @@ const DetailsMovie = () => {
                             )}
                             {isDetails.genres && isDetails.genres.length > 0 && (
                                 <>
-                                    <View style={Styles.Hr} />
-                                    <Text variant="titleSmall">
+                                    <Divider style={{ marginVertical: 5 }} />
+                                    <Text variant="titleMedium">
                                         {'Generos'}
                                     </Text>
                                     <View style={[Styles.ContainerServices, { paddingRight: 0 }]}>
@@ -207,8 +208,8 @@ const DetailsMovie = () => {
                             )}
                             {isDetails.title && (
                                 <>
-                                    <View style={Styles.Hr} />
-                                    <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                    <Divider style={{ marginVertical: 5 }} />
+                                    <Text variant="titleMedium">
                                         {'Titulo original'}
                                     </Text>
                                     <Text variant='titleSmall'>
@@ -220,8 +221,8 @@ const DetailsMovie = () => {
                                 onPress={() => setShowMessage(!isShowMessage)}
                                 style={{ flexDirection: 'column' }}
                             >
-                                <View style={Styles.Hr} />
-                                <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                                <Divider style={{ marginVertical: 5 }} />
+                                <Text variant="titleMedium">
                                     {`Sinopse`}
                                 </Text>
                                 <Text
@@ -232,22 +233,22 @@ const DetailsMovie = () => {
                                     {isDetails.sinopse.replace('Ler mais...', '')}
                                 </Text>
                             </Pressable>
-                            <View style={Styles.Hr} />
-                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                            <Divider style={{ marginVertical: 5 }} />
+                            <Text variant="titleMedium">
                                 {`Duração`}
                             </Text>
                             <Text variant='titleSmall'>
                                 {data.time}
                             </Text>
-                            <View style={Styles.Hr} />
-                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                            <Divider style={{ marginVertical: 5 }} />
+                            <Text variant="titleMedium">
                                 {`Diretor`}
                             </Text>
                             <Text variant='titleSmall'>
                                 {isDetails.diretor.replace(/<b>.*?<\/b> /g, '')}
                             </Text>
-                            <View style={Styles.Hr} />
-                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                            <Divider style={{ marginVertical: 5 }} />
+                            <Text variant="titleMedium">
                                 {`Elenco`}
                             </Text>
                             <Text
@@ -257,14 +258,14 @@ const DetailsMovie = () => {
                             >
                                 {isDetails.elenco.replace(/<b>.*?<\/b> /g, '')}
                             </Text>
-                            <View style={Styles.Hr} />
-                            <Text variant="titleSmall" style={{ fontWeight: 'bold' }}>
+                            <Divider style={{ marginVertical: 5 }} />
+                            <Text variant="titleMedium">
                                 {`Produtor`}
                             </Text>
                             <Text variant='titleSmall'>
                                 {isDetails.produtor.replace(/<b>.*?<\/b> /g, '')}
                             </Text>
-                            <View style={Styles.Hr} />
+                            <Divider style={{ marginVertical: 5 }} />
                             <Button
                                 mode='contained'
                                 onPress={() => navigation.navigate('Comments', { url: isDetails.comments })}
@@ -272,7 +273,7 @@ const DetailsMovie = () => {
                             >
                                 {`Comentários`}
                             </Button>
-                            <View style={Styles.Hr} />
+                            <Divider style={{ marginVertical: 5 }} />
                             <ShowModalData
                                 isModalVisible={isShowMessage}
                                 setModalVisible={() => setShowMessage(!isShowMessage)}

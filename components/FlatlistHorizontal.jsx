@@ -7,10 +7,10 @@ import {
 } from 'react-native';
 import Styles from '../utils/Styles';
 import {
-    MD3DarkTheme as theme,
     Text,
 } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import uuid from 'react-native-uuid';
 
 const FlatlistHorizontal = ({ data }) => {
     const navigation = useNavigation();
@@ -19,7 +19,7 @@ const FlatlistHorizontal = ({ data }) => {
         <FlatList
             data={data}
             style={{ marginTop: 15 }}
-            keyExtractor={(index) => "#" + index.toString()}
+            key={uuid.v4()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => {
@@ -28,7 +28,8 @@ const FlatlistHorizontal = ({ data }) => {
                 
                 return (
                     <Pressable
-                        style={Styles.FlatlistHorizontal} 
+                        style={Styles.FlatlistHorizontal}
+                        key={uuid.v4()}
                         onPress={() => {
                             navigation.navigate('DetailsMovie', { data: {
                                 img: cleanImgUrl,

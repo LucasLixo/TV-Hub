@@ -8,7 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import {
     MD3DarkTheme as theme,
     Text,
-    IconButton
+    IconButton,
+    Divider,
 } from 'react-native-paper';
 
 const ExpandResults = ({ title, url }) => {
@@ -16,7 +17,6 @@ const ExpandResults = ({ title, url }) => {
 
     return (
         <>
-            <View style={Styles.Hr} />
             <View style={[Styles.Header, { paddingLeft: 10 }]}>
                 <Text variant="titleSmall" style={{fontSize: 16, fontWeight: 'bold', textTransform: 'capitalize' }}>
                     {title}
@@ -29,6 +29,7 @@ const ExpandResults = ({ title, url }) => {
                     onPress={() => navigation.navigate('ResultsGenre', { title, url })}
                 />
             </View>
+            <Divider style={{ marginVertical: 5 }} />
         </>
     );
 };

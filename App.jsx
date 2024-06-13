@@ -63,8 +63,12 @@ const SearchHeader = ({ navigation }) => {
     return (
         <Searchbar
             mode="bar"
-            style={{ flex: 1, width: '100%', backgroundColor: theme.colors.background }}
+            style={{ flex: 1, width: 2000, backgroundColor: theme.colors.elevation.level5, color: '#FFFFFF' }}
             placeholder="Pesquisar"
+            iconColor='#FFFFFF'
+            placeholderTextColor='#FFFFFF'
+            icon='arrow-left'
+            onIconPress={() => navigation.goBack()}
             value={query}
             onChangeText={handleQueryChange}
         />
@@ -85,7 +89,7 @@ export default function App() {
     return (
         <PaperProvider theme={theme} style={Styles.AreaView}>
             {isConnected ? (
-                <NavigationContainer theme={theme}>
+                <NavigationContainer theme={theme} style={{ backgroundColor: theme.colors.background }}>
                     <Stack.Navigator
                         screenOptions={{
                             headerStyle: {
@@ -114,8 +118,18 @@ export default function App() {
                         />
                         <Stack.Screen
                             options={({ navigation }) => ({
-                                title: '',
-                                headerRight: () => <SearchHeader navigation={navigation} />
+                                headerTitle: () => <SearchHeader navigation={navigation} />,
+                                headerLeft: () => null,
+                                headerTitleAlign: 'center',
+                                headerStyle: {
+                                    backgroundColor: theme.colors.elevation.level5,
+                                    shadowOpacity: 0,
+                                    elevation: 0,
+                                },
+                                headerTitleContainerStyle: {
+                                    left: 0,
+                                    right: 0,
+                                },
                             })}
                             name="Search" component={Search}
                         />
