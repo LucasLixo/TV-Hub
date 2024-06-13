@@ -66,6 +66,7 @@ const SearchHeader = ({ navigation }) => {
             style={{ flex: 1, width: 2000, backgroundColor: theme.colors.elevation.level5, color: '#FFFFFF' }}
             placeholder="Pesquisar"
             iconColor='#FFFFFF'
+            rippleColor={theme.colors.inversePrimary}
             placeholderTextColor='#FFFFFF'
             icon='arrow-left'
             onIconPress={() => navigation.goBack()}
