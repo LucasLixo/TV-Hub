@@ -29,10 +29,10 @@ Todas as mudanças notáveis ​​(a partir da v1.1.4) em versões estáveis �
 
 ## Versions
 
-- [v1.1.7][https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.7]
+- [v1.1.7](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.7)
 
-- [v1.1.6][https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.6]
+- [v1.1.6](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.6)
 
-- [v1.1.5][https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.5]
+- [v1.1.5](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.5)
 
-- [v1.1.4][https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.4]
+- [v1.1.4](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.4)
