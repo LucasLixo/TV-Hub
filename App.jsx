@@ -4,7 +4,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import NetInfo from '@react-native-community/netinfo';
-import ActivityErro from './components/ActivityErro';
+import RNRestart from 'react-native-restart';
 import {
     setStatusBarBackgroundColor,
     setStatusBarHidden,
@@ -12,9 +12,13 @@ import {
     setStatusBarTranslucent
 } from 'expo-status-bar';
 import {
+    Button,
+    Dialog,
     IconButton,
     MD3DarkTheme,
     PaperProvider,
+    Portal,
+    Text,
     Searchbar,
 } from 'react-native-paper';
 import Styles from './utils/Styles';
@@ -85,11 +89,15 @@ export default function App() {
         setStatusBarTranslucent(true);
     }, []);
 
+    const appRestart = () => {
+        RNRestart.restart();
+    }
+
     const isConnected = useInternetConnection();
 
     return (
         <PaperProvider theme={theme} style={Styles.AreaView}>
-            {isConnected ? (
+            {false ? (
                 <NavigationContainer theme={theme} style={{ backgroundColor: theme.colors.background }}>
                     <Stack.Navigator
                         screenOptions={{
@@ -121,6 +129,7 @@ export default function App() {
                             options={({ navigation }) => ({
                                 headerTitle: () => <SearchHeader navigation={navigation} />,
                                 headerLeft: () => null,
+                                headerRight: () => null,
                                 headerTitleAlign: 'center',
                                 headerStyle: {
                                     backgroundColor: theme.colors.elevation.level5,
@@ -158,7 +167,17 @@ export default function App() {
                 </NavigationContainer>
             ) : (
                 <SafeAreaView style={Styles.AreaView}>
-                    <ActivityErro textError="SEM CONEXÃO COM A INTERNET" />
+                    <Portal>
+                        <Dialog visible={true}>
+                            <Dialog.Title>Erro de conexão</Dialog.Title>
+                            <Dialog.Content>
+                                <Text variant="bodyMedium">Não é possível conectar-se ao servidor. Verifique sua conexão com a Internet e tente novamente.</Text>
+                            </Dialog.Content>
+                            <Dialog.Actions>
+                                <Button onPress={() => appRestart()}>Tente novamente</Button>
+                            </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
                 </SafeAreaView>
             )}
         </PaperProvider>
