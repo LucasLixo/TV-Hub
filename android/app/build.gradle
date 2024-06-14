@@ -88,8 +88,8 @@ android {
         applicationId "com.cornflower.tvhub"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 101080
-        versionName "1.1.8"
+        versionCode 101090
+        versionName "1.1.9"
     }
     signingConfigs {
         debug {
