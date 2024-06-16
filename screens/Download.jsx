@@ -10,13 +10,16 @@ import {
     Divider,
 } from 'react-native-paper';
 import { clipboardToast } from '../utils/Fuctions';
+import ActivityErro from '../components/ActivityErro';
 
 const Download = () => {
     const route = useRoute();
+    const [isVideoState, setVideoState] = useState(() => { return true });
+
     const [script, setScript] = useState(() => { return null });
     const [urlVideo, setUrlVideo] = useState(() => { return null });
-    const [status, setStatus] = useState(() => { return null });
-    const [headers, setHeaders] = useState(() => { return null });
+    // const [status, setStatus] = useState(() => { return null });
+    // const [headers, setHeaders] = useState(() => { return null });
 
     const title = route.params?.title;
     const url = route.params?.url;
@@ -44,15 +47,15 @@ const Download = () => {
         navigation.setOptions({ title: `Baixar: ${title}` });
     }, [title]);
 
-    const headersUrl = async (url) => {
+    /* const headersUrl = async (url) => {
         try {
             const response = await fetch(url, { method: 'HEAD' });
-            setStatus(response.status);
+            // setStatus(response.status);
             setHeaders(response.headers.map);
         } catch (error) {
             // console.log(error);
         }
-    }
+    } */
 
     const openUrl = async () => {
         const ADM = `com.dv.adm`;
@@ -65,11 +68,11 @@ const Download = () => {
         }
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (urlVideo) {
             headersUrl(urlVideo);
         }
-    }, [urlVideo]);
+    }, [urlVideo]); */
 
     if (!script) {
         return <ActivityTemp />;
@@ -79,7 +82,7 @@ const Download = () => {
         <View style={{ flex: 1, width: '100%', height: '100%' }}>
             {(urlVideo && urlVideo !== '') ? (
                 <View style={{ flex: 1, flexDirection: 'column', padding: 10 }}>
-                    {headers && headers['content-length'] && (
+                    {/* {headers && headers['content-length'] && (
                         <>
                             <View style={Styles.CardContainer}>
                                 <Text variant="titleSmall">{`Tamanho`}</Text>
@@ -87,7 +90,7 @@ const Download = () => {
                             </View>
                             <Divider style={{ marginVertical: 5 }} />
                         </>
-                    )}
+                    )} */}
                     <View style={[Styles.CardContainer, { height: 40 }]}>
                         <Pressable style={[Styles.CardContainerButton, { width: '100%' }]} onPress={() => clipboardToast(urlVideo)}>
                             <Text variant="titleSmall">{`Copiar Link`}</Text>
@@ -103,17 +106,22 @@ const Download = () => {
             ) : (
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <View style={{ width: '100%', height: 240, position: 'relative' }}>
-                        <WebIframe
-                            isUrl={url}
-                            isInjectedJavaScript={script}
-                            setHandleMessage={(urlExtracted) => {
-                                if (urlExtracted != null && urlExtracted !== 'null') {
-                                    setUrlVideo(urlExtracted);
-                                }
-                            }}
-                            overScrollMode='never'
-                            scrollEnabled={false}
-                        />
+                        {isVideoState ? (
+                            <WebIframe
+                                isUrl={url}
+                                isInjectedJavaScript={script}
+                                setHandleMessage={(urlExtracted) => {
+                                    if (urlExtracted != null && urlExtracted !== 'null') {
+                                        setUrlVideo(urlExtracted);
+                                    }
+                                }}
+                                setHandleVideo={(state) => setVideoState(state)}
+                                overScrollMode='never'
+                                scrollEnabled={false}
+                            />
+                        ) : (
+                            <ActivityErro textError='Sem Video' />
+                        )}
                     </View>
                     <Text variant="titleSmall" style={{ textTransform: 'uppercase' }}>{`Inicie o video para baixar`}</Text>
                 </View>

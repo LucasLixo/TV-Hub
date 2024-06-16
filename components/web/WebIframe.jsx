@@ -4,14 +4,21 @@ import { USER_AGENT_WINDOWS } from '../../utils/Constants';
 import Styles from '../../utils/Styles';
 import { DOMAINS } from '../../utils/Constants';
 
-const WebIframe = ({ isUrl, isInjectedJavaScript, setHandleErro, setHandleMessage, ...props }) => {
+const WebIframe = ({ isUrl, isInjectedJavaScript, setHandleErro, setHandleMessage, setHandleVideo, ...props }) => {
     const onShouldStartLoadWithRequest = (request) => {
         const url = new URL(request.url);
-
         const hostname = url.hostname;
+
+        const requiresPathCheck = ['mixdrop', 'streamtape', 'filemoon'];
+        const domainRequiresPathCheck = requiresPathCheck.some(domain => hostname.includes(domain));
+
+        if (domainRequiresPathCheck) {
+            setHandleVideo(!url.pathname.endsWith('/e/'));
+        }
+
         return DOMAINS.some(domain => hostname.includes(domain));
     };
-
+    
     return (
         <WebView
             source={{

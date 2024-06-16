@@ -54,6 +54,7 @@ export const DOMAINS = [
     'vizerhd',
     'accounts.google',
     'google',
+    'disqus',
     'encontre',
     'mixdrop',
     'streamtape',
