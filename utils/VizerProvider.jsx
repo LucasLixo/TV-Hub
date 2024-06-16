@@ -1,4 +1,3 @@
-// VizerContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
 export const VizerContext = createContext();
@@ -13,7 +12,6 @@ export const VizerProvider = ({ children }) => {
                 const host = await response.text();
                 setVizerHost(host.trim());
             } catch (error) {
-                // console.error('Error fetching Vizer host:', error);
             }
         };
 
