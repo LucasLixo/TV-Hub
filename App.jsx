@@ -4,7 +4,6 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import NetInfo from '@react-native-community/netinfo';
-import RNRestart from 'react-native-restart';
 import {
     setStatusBarBackgroundColor,
     setStatusBarHidden,
@@ -12,7 +11,6 @@ import {
     setStatusBarTranslucent
 } from 'expo-status-bar';
 import {
-    Button,
     Dialog,
     IconButton,
     MD3DarkTheme,
@@ -89,15 +87,11 @@ export default function App() {
         setStatusBarTranslucent(true);
     }, []);
 
-    const appRestart = () => {
-        RNRestart.restart();
-    }
-
     const isConnected = useInternetConnection();
 
     return (
         <PaperProvider theme={theme} style={Styles.AreaView}>
-            {false ? (
+            {isConnected ? (
                 <NavigationContainer theme={theme} style={{ backgroundColor: theme.colors.background }}>
                     <Stack.Navigator
                         screenOptions={{
@@ -173,9 +167,6 @@ export default function App() {
                             <Dialog.Content>
                                 <Text variant="bodyMedium">Não é possível conectar-se ao servidor. Verifique sua conexão com a Internet e tente novamente.</Text>
                             </Dialog.Content>
-                            <Dialog.Actions>
-                                <Button onPress={() => appRestart()}>Tente novamente</Button>
-                            </Dialog.Actions>
                         </Dialog>
                     </Portal>
                 </SafeAreaView>

@@ -1,33 +1,34 @@
 {
-    "expo": {
-        "name": "TV Hub",
-        "slug": "tv-hub",
-        "version": "1.1.8",
-        "splash": {
-            "resizeMode": "contain"
-        },
-        "platforms": [
-            "android"
-        ],
-        "orientation": "portrait",
-        "plugins": [
-            [
-                "expo-screen-orientation",
-                {
-                    "initialOrientation": "PORTRAIT"
-                }
-            ]
-        ],
-        "android": {
-            "userInterfaceStyle": "dark"
-        },
-        "web": {
-            "favicon": "./assets/favicon.png"
-        },
-        "extra": {
-            "eas": {
-                "projectId": "9e0f169a-e82b-4fe2-8d69-82b85ae4aa66"
-            }
+  "expo": {
+    "name": "TV Hub",
+    "slug": "tv-hub",
+    "version": "1.1.8",
+    "splash": {
+      "resizeMode": "contain"
+    },
+    "platforms": [
+      "android"
+    ],
+    "orientation": "portrait",
+    "plugins": [
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "PORTRAIT"
         }
+      ]
+    ],
+    "android": {
+      "userInterfaceStyle": "dark",
+      "package": "com.cornflower.tvhub"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9e0f169a-e82b-4fe2-8d69-82b85ae4aa66"
+      }
     }
+  }
 }

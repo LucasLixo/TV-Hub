@@ -83,13 +83,13 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.cornflower.tvhub"
+    namespace 'com.cornflower.tvhub'
     defaultConfig {
-        applicationId "com.cornflower.tvhub"
+        applicationId 'com.cornflower.tvhub'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 101090
-        versionName "1.1.9"
+        versionCode 1
+        versionName "1.1.8"
     }
     signingConfigs {
         debug {

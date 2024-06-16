@@ -1,4 +1,4 @@
-rootProject.name = 'TVHub'
+rootProject.name = 'TV Hub'
 
 dependencyResolutionManagement {
   versionCatalogs {
