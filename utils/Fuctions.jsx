@@ -19,3 +19,7 @@ export const extractUrlVizer = (url) => {
     return `${VIZER_HOST}/embed/getplay.php?id=${match ? match[1] : null}`;
 }
 
+export const capitalizeString = (str) => {
+    if (!str) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};

@@ -1,5 +1,5 @@
 // Vizer
-export const VIZER_DOMAIN = "vizerhd.org";
+export const VIZER_DOMAIN = "vizerhd.mov";
 export const VIZER_HOST = `https://${VIZER_DOMAIN}/`;
 export const VIZER_SEARCH = `${VIZER_HOST}pesquisar/?p=`;
 

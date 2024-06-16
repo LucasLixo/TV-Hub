@@ -1,10 +1,9 @@
 import React from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { extractUrlVizer } from '../../utils/Fuctions';
 import ShowModalFade from '../../components/ShowModalFade';
 import Styles from '../../utils/Styles';
 import {
-    MD3DarkTheme as theme,
     Text,
     Button,
     Divider

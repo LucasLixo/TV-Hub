@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import Styles from '../utils/Styles';
 import {
-    MD3DarkTheme as theme,
     Text,
 } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';

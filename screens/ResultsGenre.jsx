@@ -12,6 +12,7 @@ import Styles from '../utils/Styles';
 import WebScraping from '../components/web/WebScraping';
 import { SCRIPT_NEW_MOVIES, SCRIPT_PAGES } from '../utils/Scripts';
 import Footer from './includes/Footer';
+import { capitalizeString } from '../utils/Fuctions';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -54,7 +55,7 @@ const Search = () => {
     }, [isResults]);
 
     useEffect(() => {
-        navigation.setOptions({ title: title });
+        navigation.setOptions({ title: capitalizeString(title) });
     }, [title]);
 
     return (

@@ -3,10 +3,9 @@ import { View } from 'react-native';
 import { clipboardToast, extractUrlVizer } from '../../utils/Fuctions';
 import { useNavigation } from '@react-navigation/native';
 import {
-    MD3DarkTheme as theme,
     Text,
     Button,
-    Divider
+    IconButton,
 } from 'react-native-paper';
 import ShowModalFade from '../../components/ShowModalFade';
 import Styles from '../../utils/Styles';
@@ -37,54 +36,58 @@ const OptionsEpisode = ({ isModalVisible, setModalVisible, url, title }) => {
         <ShowModalFade isModalVisible={isModalVisible} setModalVisible={setModalVisible}>
             <View style={Styles.CardOut}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text variant="titleSmall" style={{ marginBottom: 10 }}>
+                    <Text variant="titleMedium" style={{ marginBottom: 10 }}>
                         {`Players`}
                     </Text>
-                    <Text variant="titleSmall" style={{ marginBottom: 10 }}>
+                    <Text variant="titleMedium" style={{ marginBottom: 10 }}>
                         {`Baixar`}
                     </Text>
                 </View>
-                <View style={[Styles.CardIn, { backgroundColor: 'transparent', flexDirection: 'row', justifyContent: 'space-between' }]}>
-                    <View style={{ flexDirection: 'column', width: '70%' }}>
+                <View style={[Styles.CardIn, { backgroundColor: 'transparent', flexDirection: 'column' }]}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Button
+                            style={{ width: '65%' }}
                             mode='contained'
                             onLongPress={() => clipboardToast(`${extractedUrl}&sv=mixdrop`)}
                             onPress={() => handleNavigate('mixdrop')}
                         >
                             {`Mixdrop`}
                         </Button>
-                        <Divider style={{ marginVertical: 5 }} />
+                        <IconButton
+                            mode='contained'
+                            size={34}
+                            onPress={() => handleDownload('mixdrop')}
+                            icon='download'
+                        />
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Button
+                            style={{ width: '65%' }}
                             mode='contained'
                             onLongPress={() => clipboardToast(`${extractedUrl}&sv=filemoon`)}
                             onPress={() => handleNavigate('filemoon')}
                         >
                             {`Filemoon`}
                         </Button>
-                        <Divider style={{ marginVertical: 5 }} />
+                        <IconButton
+                            mode='contained'
+                            size={34}
+                            onPress={() => handleDownload('filemoon')}
+                            icon='download'
+                        />
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Button
+                            style={{ width: '65%' }}
                             mode='contained'
                             onLongPress={() => clipboardToast(`${extractedUrl}&sv=streamtape`)}
                             onPress={() => handleNavigate('streamtape')}
                         >
                             {`Streamtape`}
                         </Button>
-                    </View>
-                    <View style={{ width: '25%', justifyContent: 'space-between', alignItems: 'center', borderRadius: 5 }}>
-                        <Button
+                        <IconButton
                             mode='contained'
-                            onPress={() => handleDownload('mixdrop')}
-                            icon='download'
-                        />
-                        <Divider style={{ marginVertical: 5 }} />
-                        <Button
-                            mode='contained'
-                            onPress={() => handleDownload('filemoon')}
-                            icon='download'
-                        />
-                        <Divider style={{ marginVertical: 5 }} />
-                        <Button
-                            mode='contained'
+                            size={34}
                             onPress={() => handleDownload('streamtape')}
                             icon='download'
                         />

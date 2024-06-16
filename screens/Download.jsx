@@ -79,22 +79,6 @@ const Download = () => {
         <View style={{ flex: 1, width: '100%', height: '100%' }}>
             {(urlVideo && urlVideo !== '') ? (
                 <View style={{ flex: 1, flexDirection: 'column', padding: 10 }}>
-                    {status && (
-                        <View style={Styles.CardContainer}>
-                            <Text variant="titleSmall">{`Status`}</Text>
-                            <Text variant="titleSmall">{status}</Text>
-                            <Divider style={{ marginVertical: 5 }} />
-                        </View>
-                    )}
-                    {headers && headers['content-type'] && (
-                        <>
-                            <View style={Styles.CardContainer}>
-                                <Text variant="titleSmall">{`Extensão`}</Text>
-                                <Text variant="titleSmall">{headers['content-type']}</Text>
-                            </View>
-                            <Divider style={{ marginVertical: 5 }} />
-                        </>
-                    )}
                     {headers && headers['content-length'] && (
                         <>
                             <View style={Styles.CardContainer}>
