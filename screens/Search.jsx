@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import WebScraping from '../components/web/WebScraping';
 import { View, ScrollView, Pressable } from 'react-native';
 import { encodeWithPlus } from '../utils/Fuctions';
@@ -17,6 +17,7 @@ import Styles from '../utils/Styles';
 import FlatlistVertical from '../components/FlatlistVertical';
 import Footer from './includes/Footer';
 import uuid from 'react-native-uuid';
+import { VizerContext } from '../utils/VizerProvider';
 
 const theme = {
     ...MD3DarkTheme,
@@ -63,6 +64,8 @@ const genreKey = {
 };
 
 const Search = () => {
+    const vizerHost = useContext(VizerContext);
+
     const navigation = useNavigation();
     const route = useRoute();
 
@@ -108,92 +111,96 @@ const Search = () => {
 
     return (
         <>
-            <ScrollView style={[Styles.ContainerView, { paddingTop: 10 }]} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                {isStringSearch ? (
-                    <>
-                        <WebScraping
-                            isUrl={searchUrl}
-                            isInjectedJavaScript={SCRIPT_NEW_MOVIES}
-                            setHandleMessage={handleResults}
-                        />
-                        <WebScraping
-                            isUrl={`${VIZER_SEARCH}${isStringSearch}`}
-                            isInjectedJavaScript={SCRIPT_PAGES}
-                            setHandleMessage={(results) => {
-                                dispatch({ type: 'setTotalPage', payload: parseInt(results) });
-                            }}
-                        />
-                        {isResults.length > 0 && state.TotalPage !== null && (
+            {vizerHost && (
+                <>
+                    <ScrollView style={[Styles.ContainerView, { paddingTop: 10 }]} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                        {isStringSearch ? (
                             <>
-                                <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
-                                    {state.TotalPage !== 0 && state.Page > 1 && (
-                                        <Button
-                                            mode='contained'
-                                            onPress={() => {
-                                                setLoaded(true);
-                                                dispatch({ type: 'preview' });
-                                            }}
-                                        >
-                                            {`Anterior`}
-                                        </Button>
-                                    )}
-                                    {state.TotalPage !== 0 && state.Page !== state.TotalPage && (
-                                        <Button
-                                            mode='contained'
-                                            onPress={() => {
-                                                setLoaded(true);
-                                                dispatch({ type: 'next' });
-                                            }}
-                                        >
-                                            {`Próximo`}
-                                        </Button>
-                                    )}
-                                </View>
-                                <Divider style={{ marginVertical: 5 }} />
-                                <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
-                                    <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
-                                    <Text variant="titleSmall">{`Página: ${state.Page}`}</Text>
-                                </View>
-                                <Divider style={{ marginVertical: 5 }} />
-                                <FlatlistVertical data={isResults} />
-                                <Footer />
+                                <WebScraping
+                                    isUrl={vizerHost + searchUrl}
+                                    isInjectedJavaScript={SCRIPT_NEW_MOVIES}
+                                    setHandleMessage={handleResults}
+                                />
+                                <WebScraping
+                                    isUrl={`${vizerHost}${VIZER_SEARCH}${isStringSearch}`}
+                                    isInjectedJavaScript={SCRIPT_PAGES}
+                                    setHandleMessage={(results) => {
+                                        dispatch({ type: 'setTotalPage', payload: parseInt(results) });
+                                    }}
+                                />
+                                {isResults.length > 0 && state.TotalPage !== null && (
+                                    <>
+                                        <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
+                                            {state.TotalPage !== 0 && state.Page > 1 && (
+                                                <Button
+                                                    mode='contained'
+                                                    onPress={() => {
+                                                        setLoaded(true);
+                                                        dispatch({ type: 'preview' });
+                                                    }}
+                                                >
+                                                    {`Anterior`}
+                                                </Button>
+                                            )}
+                                            {state.TotalPage !== 0 && state.Page !== state.TotalPage && (
+                                                <Button
+                                                    mode='contained'
+                                                    onPress={() => {
+                                                        setLoaded(true);
+                                                        dispatch({ type: 'next' });
+                                                    }}
+                                                >
+                                                    {`Próximo`}
+                                                </Button>
+                                            )}
+                                        </View>
+                                        <Divider style={{ marginVertical: 5 }} />
+                                        <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
+                                            <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
+                                            <Text variant="titleSmall">{`Página: ${state.Page}`}</Text>
+                                        </View>
+                                        <Divider style={{ marginVertical: 5 }} />
+                                        <FlatlistVertical data={isResults} />
+                                        <Footer />
+                                    </>
+                                )}
                             </>
+                        ) : (
+                            <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+                                {GENRES_MOVIES.map(({ key, title, url }) => (
+                                    <Pressable
+                                        key={uuid.v4()}
+                                        style={{
+                                            width: '40%',
+                                            height: 160,
+                                            backgroundColor: theme.colors.primary,
+                                            marginHorizontal: '5%',
+                                            marginVertical: 10,
+                                            justifyContent: 'flex-end',
+                                            borderRadius: 10,
+                                            overflow: 'hidden',
+                                            position: 'relative'
+                                        }}
+                                        onPress={() => navigation.navigate('ResultsGenre', { title, url : vizerHost + url })}
+                                    >
+                                        <Card>
+                                            <Card.Cover source={genreKey[key]} style={{ resizeMode: 'cover' }} />
+                                            <Card.Content>
+                                                <Text variant="titleSmall" style={{ textTransform: 'capitalize' }} numberOfLines={1} ellipsizeMode='tail' >{title}</Text>
+                                            </Card.Content>
+                                        </Card>
+                                    </Pressable>
+                                ))}
+                                <Footer />
+                            </View>
                         )}
-                    </>
-                ) : (
-                    <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
-                        {GENRES_MOVIES.map(({ key, title, url }) => (
-                            <Pressable
-                                key={uuid.v4()}
-                                style={{
-                                    width: '40%',
-                                    height: 160,
-                                    backgroundColor: theme.colors.primary,
-                                    marginHorizontal: '5%',
-                                    marginVertical: 10,
-                                    justifyContent: 'flex-end',
-                                    borderRadius: 10,
-                                    overflow: 'hidden',
-                                    position: 'relative'
-                                }}
-                                onPress={() => navigation.navigate('ResultsGenre', { title, url })}
-                            >
-                                <Card>
-                                    <Card.Cover source={genreKey[key]} style={{ resizeMode: 'cover' }} />
-                                    <Card.Content>
-                                        <Text variant="titleSmall" style={{ textTransform: 'capitalize' }} numberOfLines={1} ellipsizeMode='tail' >{title}</Text>
-                                    </Card.Content>
-                                </Card>
-                            </Pressable>
-                        ))}
-                        <Footer />
-                    </View>
-                )}
-            </ScrollView>
-            {isStringSearch && isLoaded && (
-                <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', backgroundColor: theme.colors.background }}>
-                    <ActivityTemp />
-                </View>
+                    </ScrollView>
+                    {isStringSearch && isLoaded && (
+                        <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', backgroundColor: theme.colors.background }}>
+                            <ActivityTemp />
+                        </View>
+                    )}
+                </>
             )}
         </>
     );

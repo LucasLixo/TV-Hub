@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ActivityTemp from '../components/ActivityTemp';
 import FlatlistVertical from '../components/FlatlistVertical';
@@ -27,7 +27,7 @@ const reducer = (state, action) => {
     }
 };
 
-const Search = () => {
+const ResultsGenre = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const [isResults, setResults] = useState(() => { return [] });
@@ -116,7 +116,7 @@ const Search = () => {
                             {state.TotalPage !== null && (
                                 <>
                                     <View style={[Styles.Header, { paddingHorizontal: 10 }]}>
-                                    <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
+                                        <Text variant="titleSmall">{`Total de Páginas: ${state.TotalPage}`}</Text>
                                         <Text variant="titleSmall">{`Página: ${state.Page}`}</Text>
                                     </View>
                                     <Divider style={{ marginVertical: 5 }} />
@@ -135,4 +135,4 @@ const Search = () => {
 };
 
 // Export
-export default Search;
+export default ResultsGenre;

@@ -28,6 +28,7 @@ import DetailsMovie from './screens/DetailsMovie';
 import Comments from './screens/Comments';
 import PlayerVideo from './screens/PlayerVideo';
 import Download from './screens/Download';
+import { VizerProvider } from './utils/VizerProvider';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -91,8 +92,8 @@ export default function App() {
     useEffect(() => {
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
         if (isConnected) {
-            setStatusBarBackgroundColor(theme.colors.elevation.level5, true);    
-        }        
+            setStatusBarBackgroundColor(theme.colors.elevation.level5, true);
+        }
         setStatusBarHidden(false, 'none');
         setStatusBarStyle('light');
         setStatusBarTranslucent(true);
@@ -102,86 +103,88 @@ export default function App() {
 
     return (
         <PaperProvider theme={theme} style={Styles.AreaView}>
-            {isConnected ? (
-                <NavigationContainer theme={theme} style={{ backgroundColor: theme.colors.background }}>
-                    <Stack.Navigator
-                        screenOptions={{
-                            headerStyle: {
-                                backgroundColor: theme.colors.elevation.level5,
-                            },
-                            headerTintColor: '#FFFFFF',
-                            headerTitleStyle: {
-                                fontWeight: 'bold',
-                            },
-                            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                        }}
-                        initialRouteName="Movie"
-                    >
-                        <Stack.Screen
-                            options={({ navigation }) => ({
-                                title: 'TV Hub',
-                                headerRight: () =>
-                                    <IconButton
-                                        icon="magnify"
-                                        size={32}
-                                        iconColor={theme.colors.primary}
-                                        onPress={() => navigation.navigate('Search')}
-                                    />
-                            })}
-                            name="Movie" component={Movie}
-                        />
-                        <Stack.Screen
-                            options={({ navigation }) => ({
-                                headerTitle: () => <SearchHeader navigation={navigation} />,
-                                headerLeft: () => null,
-                                headerRight: () => null,
-                                headerTitleAlign: 'center',
+            <VizerProvider>
+                {isConnected ? (
+                    <NavigationContainer theme={theme} style={{ backgroundColor: theme.colors.background }}>
+                        <Stack.Navigator
+                            screenOptions={{
                                 headerStyle: {
                                     backgroundColor: theme.colors.elevation.level5,
-                                    shadowOpacity: 0,
-                                    elevation: 0,
                                 },
-                                headerTitleContainerStyle: {
-                                    left: 0,
-                                    right: 0,
+                                headerTintColor: '#FFFFFF',
+                                headerTitleStyle: {
+                                    fontWeight: 'bold',
                                 },
-                            })}
-                            name="Search" component={Search}
-                        />
-                        <Stack.Screen
-                            options={{ title: '' }}
-                            name="ResultsGenre" component={ResultsGenre}
-                        />
-                        <Stack.Screen
-                            options={{ title: '' }}
-                            name="DetailsMovie" component={DetailsMovie}
-                        />
-                        <Stack.Screen
-                            options={{ title: 'Comentários' }}
-                            name="Comments" component={Comments}
-                        />
-                        <Stack.Screen
-                            options={{ headerShown: false }}
-                            name="PlayerVideo" component={PlayerVideo}
-                        />
-                        <Stack.Screen
-                            options={{ title: '' }}
-                            name="Download" component={Download}
-                        />
-                    </Stack.Navigator>
-                </NavigationContainer>
-            ) : (
-                <SafeAreaView style={Styles.AreaView}>
-                    <Portal>
-                        <Dialog visible={true}>
-                            <Dialog.Title>Erro de conexão</Dialog.Title>
-                            <Dialog.Content>
-                                <Text variant="bodyMedium">Não é possível conectar-se ao servidor. Verifique sua conexão com a Internet e tente novamente.</Text>
-                            </Dialog.Content>
-                        </Dialog>
-                    </Portal>
-                </SafeAreaView>
-            )}
+                                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                            }}
+                            initialRouteName="Movie"
+                        >
+                            <Stack.Screen
+                                options={({ navigation }) => ({
+                                    title: 'TV Hub',
+                                    headerRight: () =>
+                                        <IconButton
+                                            icon="magnify"
+                                            size={32}
+                                            iconColor={theme.colors.primary}
+                                            onPress={() => navigation.navigate('Search')}
+                                        />
+                                })}
+                                name="Movie" component={Movie}
+                            />
+                            <Stack.Screen
+                                options={({ navigation }) => ({
+                                    headerTitle: () => <SearchHeader navigation={navigation} />,
+                                    headerLeft: () => null,
+                                    headerRight: () => null,
+                                    headerTitleAlign: 'center',
+                                    headerStyle: {
+                                        backgroundColor: theme.colors.elevation.level5,
+                                        shadowOpacity: 0,
+                                        elevation: 0,
+                                    },
+                                    headerTitleContainerStyle: {
+                                        left: 0,
+                                        right: 0,
+                                    },
+                                })}
+                                name="Search" component={Search}
+                            />
+                            <Stack.Screen
+                                options={{ title: '' }}
+                                name="ResultsGenre" component={ResultsGenre}
+                            />
+                            <Stack.Screen
+                                options={{ title: '' }}
+                                name="DetailsMovie" component={DetailsMovie}
+                            />
+                            <Stack.Screen
+                                options={{ title: 'Comentários' }}
+                                name="Comments" component={Comments}
+                            />
+                            <Stack.Screen
+                                options={{ headerShown: false }}
+                                name="PlayerVideo" component={PlayerVideo}
+                            />
+                            <Stack.Screen
+                                options={{ title: '' }}
+                                name="Download" component={Download}
+                            />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                ) : (
+                    <SafeAreaView style={Styles.AreaView}>
+                        <Portal>
+                            <Dialog visible={true}>
+                                <Dialog.Title>Erro de conexão</Dialog.Title>
+                                <Dialog.Content>
+                                    <Text variant="bodyMedium">Não é possível conectar-se ao servidor. Verifique sua conexão com a Internet e tente novamente.</Text>
+                                </Dialog.Content>
+                            </Dialog>
+                        </Portal>
+                    </SafeAreaView>
+                )}
+            </VizerProvider>
         </PaperProvider>
     );
 }

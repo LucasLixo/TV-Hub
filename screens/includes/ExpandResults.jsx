@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     View,
-    Pressable,
 } from 'react-native';
 import Styles from '../../utils/Styles';
 import { useNavigation } from '@react-navigation/native';
@@ -11,8 +10,11 @@ import {
     IconButton,
     Divider,
 } from 'react-native-paper';
+import { VizerContext } from '../../utils/VizerProvider';
 
 const ExpandResults = ({ title, url }) => {
+    const vizerHost = useContext(VizerContext);
+    
     const navigation = useNavigation();
 
     return (
@@ -26,7 +28,7 @@ const ExpandResults = ({ title, url }) => {
                     iconColor={theme.colors.primary}
                     size={32}
                     style={{ width: '10%' }}
-                    onPress={() => navigation.navigate('ResultsGenre', { title, url })}
+                    onPress={() => navigation.navigate('ResultsGenre', { title, url : vizerHost + url })}
                 />
             </View>
             <Divider style={{ marginVertical: 5 }} />

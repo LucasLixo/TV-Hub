@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import {
     ToastAndroid,
 } from "react-native";
 import * as Clipboard from 'expo-clipboard';
-import { VIZER_HOST } from './Constants';
+import { VizerContext } from "./VizerProvider";
 
 export const clipboardToast = async (Clip) => {
     await Clipboard.setStringAsync(Clip);
@@ -16,7 +17,8 @@ export const encodeWithPlus = (str) => {
 export const extractUrlVizer = (url) => {
     const regex = /(\d+)\/?$/;
     const match = url.match(regex);
-    return `${VIZER_HOST}/embed/getplay.php?id=${match ? match[1] : null}`;
+    const vizerHost = useContext(VizerContext);
+    return `${vizerHost}/embed/getplay.php?id=${match ? match[1] : null}`;
 }
 
 export const capitalizeString = (str) => {

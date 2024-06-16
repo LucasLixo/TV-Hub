@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FlatList, Image, Pressable, ScrollView, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Styles from '../utils/Styles';
@@ -15,8 +15,11 @@ import OptionsPlayer from './includes/OptionsPlayer';
 import OptionsDownload from './includes/OptionsDownload';
 import OptionsEpisode from './includes/OptionsEpisode';
 import Footer from './includes/Footer';
+import { VizerContext } from '../utils/VizerProvider';
 
 const DetailsMovie = () => {
+    const vizerHost = useContext(VizerContext);
+
     const route = useRoute();
     const [isDetails, setDetails] = useState(() => { return null });
     const [isShowMessage, setShowMessage] = useState(() => { return false });
@@ -266,18 +269,14 @@ const DetailsMovie = () => {
                                 {isDetails.produtor.replace(/<b>.*?<\/b> /g, '')}
                             </Text>
                             <Divider style={{ marginVertical: 5 }} />
-                            {isDetails.comments && (
-                                <>
-                                    <Button
-                                        mode='contained'
-                                        onPress={() => navigation.navigate('Comments', { url: isDetails.comments })}
-                                        icon='chat-processing'
-                                    >
-                                        {`Comentários`}
-                                    </Button>
-                                    <Divider style={{ marginVertical: 5 }} />
-                                </>
-                            )}
+                            <Button
+                                mode='contained'
+                                onPress={() => navigation.navigate('Comments', { url: isDetails.comments })}
+                                icon='chat-processing'
+                            >
+                                {`Comentários`}
+                            </Button>
+                            <Divider style={{ marginVertical: 5 }} />
                             <ShowModalData
                                 isModalVisible={isShowMessage}
                                 setModalVisible={() => setShowMessage(!isShowMessage)}
