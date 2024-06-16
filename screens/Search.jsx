@@ -66,11 +66,11 @@ const Search = () => {
     const navigation = useNavigation();
     const route = useRoute();
 
-    const [isString, setString] = useState('');
-    const [isResults, setResults] = useState([]);
-    const [isStringSearch, setStringSearch] = useState('');
+    const [isString, setString] = useState(() => { return '' });
+    const [isResults, setResults] = useState(() => { return [] });
+    const [isStringSearch, setStringSearch] = useState(() => { return '' });
 
-    const [isLoaded, setLoaded] = useState(true);
+    const [isLoaded, setLoaded] = useState(() => { return true });
 
     const [state, dispatch] = useReducer(reducer, {
         TotalPage: null,

@@ -1,34 +1,44 @@
 {
-  "expo": {
-    "name": "TV Hub",
-    "slug": "tv-hub",
-    "version": "1.1.8",
-    "splash": {
-      "resizeMode": "contain"
-    },
-    "platforms": [
-      "android"
-    ],
-    "orientation": "portrait",
-    "plugins": [
-      [
-        "expo-screen-orientation",
-        {
-          "initialOrientation": "PORTRAIT"
-        }
-      ]
-    ],
-    "android": {
-      "userInterfaceStyle": "dark",
-      "package": "com.cornflower.tvhub"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "9e0f169a-e82b-4fe2-8d69-82b85ae4aa66"
-      }
+    "expo": {
+        "name": "TV Hub",
+        "slug": "tv-hub",
+        "version": "1.1.8",
+        "platforms": [
+            "android"
+        ],
+        "orientation": "portrait",
+        "android": {
+            "package": "com.cornflower.tvhub",
+            "versionCode": 101080,
+            "userInterfaceStyle": "dark",
+            "backgroundColor": "#000000",
+            "icon": "./fastlane/ic_launcher.png",
+            "splash": {
+                "resizeMode": "contain",
+                "backgroundColor": "#000000",
+                "image": "./fastlane/splashscreen_image.png"
+            }
+        },
+        "extra": {
+            "eas": {
+                "projectId": "9e0f169a-e82b-4fe2-8d69-82b85ae4aa66"
+            }
+        },
+        "plugins": [
+            [
+                "./plugins/withAndroidMainActivityAttributes",
+                {
+                    "android:windowSoftInputMode": "adjustPan",
+                    "android:showWhenLocked": true,
+                    "android:turnScreenOn": true
+                }
+            ],
+            [
+                "expo-screen-orientation",
+                {
+                    "initialOrientation": "PORTRAIT"
+                }
+            ]
+        ]
     }
-  }
 }

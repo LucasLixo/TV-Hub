@@ -4,6 +4,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import NetInfo from '@react-native-community/netinfo';
+import * as SplashScreen from 'expo-splash-screen';
 import {
     setStatusBarBackgroundColor,
     setStatusBarHidden,
@@ -28,6 +29,8 @@ import Comments from './screens/Comments';
 import PlayerVideo from './screens/PlayerVideo';
 import Download from './screens/Download';
 
+SplashScreen.preventAutoHideAsync();
+
 const theme = {
     ...MD3DarkTheme,
     colors: {
@@ -38,8 +41,12 @@ const theme = {
 
 const Stack = createStackNavigator();
 
+const onLayoutRoot = async () => {
+    await SplashScreen.hideAsync();
+}
+
 const useInternetConnection = () => {
-    const [isConnected, setIsConnected] = useState(() => true);
+    const [isConnected, setIsConnected] = useState(() => { return true });
 
     useEffect(() => {
         const unsubscribe = NetInfo.addEventListener(state => {
@@ -55,7 +62,7 @@ const useInternetConnection = () => {
 };
 
 const SearchHeader = ({ navigation }) => {
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState(() => { return '' });
 
     const handleQueryChange = (newQuery) => {
         setQuery(newQuery);
@@ -79,15 +86,19 @@ const SearchHeader = ({ navigation }) => {
 };
 
 export default function App() {
+    const isConnected = useInternetConnection();
+
     useEffect(() => {
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-        setStatusBarBackgroundColor(theme.colors.elevation.level5, true);
+        if (isConnected) {
+            setStatusBarBackgroundColor(theme.colors.elevation.level5, true);    
+        }        
         setStatusBarHidden(false, 'none');
         setStatusBarStyle('light');
         setStatusBarTranslucent(true);
     }, []);
 
-    const isConnected = useInternetConnection();
+    onLayoutRoot();
 
     return (
         <PaperProvider theme={theme} style={Styles.AreaView}>

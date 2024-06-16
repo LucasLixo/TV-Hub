@@ -30,8 +30,8 @@ const reducer = (state, action) => {
 const Search = () => {
     const navigation = useNavigation();
     const route = useRoute();
-    const [isResults, setResults] = useState([]);
-    const [isLoadResults, setLoadResults] = useState(true);
+    const [isResults, setResults] = useState(() => { return [] });
+    const [isLoadResults, setLoadResults] = useState(() => { return true });
 
     const url = route.params?.url;
     const title = route.params?.title;

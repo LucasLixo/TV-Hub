@@ -37,7 +37,7 @@ const DetailsMovie = () => {
 
     const navigation = useNavigation();
     const data = route.params?.data;
-    
+
     useEffect(() => {
         navigation.setOptions({ title: data.title });
     }, [data]);
@@ -266,14 +266,18 @@ const DetailsMovie = () => {
                                 {isDetails.produtor.replace(/<b>.*?<\/b> /g, '')}
                             </Text>
                             <Divider style={{ marginVertical: 5 }} />
-                            <Button
-                                mode='contained'
-                                onPress={() => navigation.navigate('Comments', { url: isDetails.comments })}
-                                icon='chat-processing'
-                            >
-                                {`Comentários`}
-                            </Button>
-                            <Divider style={{ marginVertical: 5 }} />
+                            {isDetails.comments && (
+                                <>
+                                    <Button
+                                        mode='contained'
+                                        onPress={() => navigation.navigate('Comments', { url: isDetails.comments })}
+                                        icon='chat-processing'
+                                    >
+                                        {`Comentários`}
+                                    </Button>
+                                    <Divider style={{ marginVertical: 5 }} />
+                                </>
+                            )}
                             <ShowModalData
                                 isModalVisible={isShowMessage}
                                 setModalVisible={() => setShowMessage(!isShowMessage)}
