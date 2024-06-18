@@ -28,11 +28,6 @@
 
 ## 📖 Características
 
->[!INFO]
->
->Baseado em [Web Scraping](https://pt.wikipedia.org/wiki/Web_scraping),
->portanto foco não é perfomace e sim sempre ter resultados com video.
-
 >[!NOTE]
 >
 >Baseado em [Web Scraping](https://pt.wikipedia.org/wiki/Web_scraping),
