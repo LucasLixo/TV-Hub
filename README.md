@@ -28,6 +28,11 @@
 
 ## 📖 Características
 
+>[!Info]
+>
+>Baseado em [Web Scraping](https://pt.wikipedia.org/wiki/Web_scraping),
+>portanto foco não é perfomace e sim sempre ter resultados com video.
+
 - TV Hub é um aplicativo que oferece uma vasta biblioteca de filmes e séries para você explorar e desfrutar.
 
 - Baixe todos os vídeos com um clique.
