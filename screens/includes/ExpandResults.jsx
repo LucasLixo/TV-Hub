@@ -5,14 +5,20 @@ import {
 import Styles from '../../utils/Styles';
 import { useNavigation } from '@react-navigation/native';
 import {
-    MD3DarkTheme as theme,
+    MD3DarkTheme,
     Text,
     IconButton,
     Divider,
 } from 'react-native-paper';
 import { VizerContext } from '../../utils/VizerProvider';
+import MyMD3 from '../../utils/MyMD3';
 
 const ExpandResults = ({ title, url }) => {
+    const theme = { 
+        ...MD3DarkTheme, 
+        colors: MyMD3.dark 
+    }
+    
     const vizerHost = useContext(VizerContext);
     
     const navigation = useNavigation();

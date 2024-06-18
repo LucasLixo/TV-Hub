@@ -2,6 +2,12 @@
 
 Todas as mudanças notáveis ​​(a partir da v1.1.4) em versões estáveis ​​serão documentadas neste arquivo.
 
+## [1.1.8](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.8) - 2024-06-16
+
+### Novidades
+
+- **Servidor Remoto**
+
 ## [1.1.7](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.7) - 2024-06-10
 
 ### Novidades

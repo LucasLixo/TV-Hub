@@ -18,14 +18,7 @@ import FlatlistVertical from '../components/FlatlistVertical';
 import Footer from './includes/Footer';
 import uuid from 'react-native-uuid';
 import { VizerContext } from '../utils/VizerProvider';
-
-const theme = {
-    ...MD3DarkTheme,
-    colors: {
-        ...MD3DarkTheme.colors,
-        background: '#000000'
-    }
-};
+import MyMD3 from '../utils/MyMD3';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -64,6 +57,11 @@ const genreKey = {
 };
 
 const Search = () => {
+    const theme = { 
+        ...MD3DarkTheme, 
+        colors: MyMD3.dark 
+    }    
+
     const vizerHost = useContext(VizerContext);
 
     const navigation = useNavigation();

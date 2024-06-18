@@ -2,14 +2,12 @@ import { StyleSheet } from 'react-native';
 import {
     MD3DarkTheme,
 } from 'react-native-paper';
+import MyMD3 from './MyMD3';
 
-const theme = {
-    ...MD3DarkTheme,
-    colors: {
-        ...MD3DarkTheme.colors,
-        background: '#000000'
-    }
-};
+const theme = { 
+    ...MD3DarkTheme, 
+    colors: MyMD3.dark 
+}
 
 const Styles = StyleSheet.create({
     AreaView: {

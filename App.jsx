@@ -29,22 +29,11 @@ import Comments from './screens/Comments';
 import PlayerVideo from './screens/PlayerVideo';
 import Download from './screens/Download';
 import { VizerProvider } from './utils/VizerProvider';
+import MyMD3 from './utils/MyMD3'
 
 SplashScreen.preventAutoHideAsync();
 
-const theme = {
-    ...MD3DarkTheme,
-    colors: {
-        ...MD3DarkTheme.colors,
-        background: '#000000'
-    }
-};
-
 const Stack = createStackNavigator();
-
-const onLayoutRoot = async () => {
-    await SplashScreen.hideAsync();
-}
 
 const useInternetConnection = () => {
     const [isConnected, setIsConnected] = useState(() => { return true });
@@ -62,33 +51,14 @@ const useInternetConnection = () => {
     return isConnected;
 };
 
-const SearchHeader = ({ navigation }) => {
-    const [query, setQuery] = useState(() => { return '' });
-
-    const handleQueryChange = (newQuery) => {
-        setQuery(newQuery);
-        navigation.setParams({ query: newQuery });
-    };
-
-    return (
-        <Searchbar
-            mode="bar"
-            style={{ flex: 1, width: 2000, backgroundColor: theme.colors.elevation.level5, color: '#FFFFFF' }}
-            placeholder="Pesquisar"
-            iconColor='#FFFFFF'
-            rippleColor={theme.colors.outline}
-            placeholderTextColor='#FFFFFF'
-            icon='arrow-left'
-            onIconPress={() => navigation.goBack()}
-            value={query}
-            onChangeText={handleQueryChange}
-        />
-    );
-};
-
 export default function App() {
     const isConnected = useInternetConnection();
 
+    const theme = { 
+        ...MD3DarkTheme, 
+        colors: MyMD3.dark 
+    }
+    
     useEffect(() => {
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
         if (isConnected) {
@@ -97,9 +67,38 @@ export default function App() {
         setStatusBarHidden(false, 'none');
         setStatusBarStyle('light');
         setStatusBarTranslucent(true);
+    }, [isConnected]);
+
+    useEffect(() => {
+        const onLayoutRoot = async () => {
+            await SplashScreen.hideAsync();
+        }
+        onLayoutRoot();
     }, []);
 
-    onLayoutRoot();
+    const SearchHeader = ({ navigation }) => {
+        const [query, setQuery] = useState(() => { return '' });
+
+        const handleQueryChange = (newQuery) => {
+            setQuery(newQuery);
+            navigation.setParams({ query: newQuery });
+        };
+
+        return (
+            <Searchbar
+                mode="bar"
+                style={{ flex: 1, width: 2000, backgroundColor: theme.colors.elevation.level5, color: '#FFFFFF' }}
+                placeholder="Pesquisar"
+                iconColor='#FFFFFF'
+                rippleColor={theme.colors.outline}
+                placeholderTextColor='#FFFFFF'
+                icon='arrow-left'
+                onIconPress={() => navigation.goBack()}
+                value={query}
+                onChangeText={handleQueryChange}
+            />
+        );
+    };
 
     return (
         <PaperProvider theme={theme} style={Styles.AreaView}>
