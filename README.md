@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="fastlane/ic_launcher.png" style="border-radius: 10px" width=160 height=160  align="center">
+<img src="fastlane/ic_launcher.png" style="border-radius: 15px;" width=160 height=160  align="center">
 
 # TV Hub
 
