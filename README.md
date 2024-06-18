@@ -28,7 +28,12 @@
 
 ## 📖 Características
 
->[!Info]
+>[!INFO]
+>
+>Baseado em [Web Scraping](https://pt.wikipedia.org/wiki/Web_scraping),
+>portanto foco não é perfomace e sim sempre ter resultados com video.
+
+>[!NOTE]
 >
 >Baseado em [Web Scraping](https://pt.wikipedia.org/wiki/Web_scraping),
 >portanto foco não é perfomace e sim sempre ter resultados com video.
@@ -54,7 +59,7 @@
 
 ## 📃 Licença
 
->[!Warning]
+>[!WARNING]
 >
 >Todas as outras partes estão proibidas de usar o nome de TV hub como um aplicativo de streaming,
 >Os derivados incluem, mas não estão limitados a, forks e versões não oficiais.
