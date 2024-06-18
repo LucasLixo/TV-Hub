@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="fastlane/ic_launcher.png"  width=160 height=160  align="center">
+<img src="fastlane/ic_launcher.png" style="border-radius: 10px" width=160 height=160  align="center">
 
 # TV Hub
 
@@ -17,7 +17,7 @@
 
 <div align="center">
 <div>
-<img src="fastlane/screenshot/screenshot (0).jpg" width="24%" />
+<img src="fastlane/screenshot/screenshot (1).jpg" width="24%" />
 <img src="fastlane/screenshot/screenshot (2).jpg" width="24%" />
 <img src="fastlane/screenshot/screenshot (3).jpg" width="24%" />
 <img src="fastlane/screenshot/screenshot (4).jpg" width="24%" />
