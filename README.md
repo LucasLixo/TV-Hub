@@ -17,7 +17,7 @@
 
 <div align="center">
 <div>
-<img src="fastlane/screenshot/screenshot (1).jpg" width="24%" />
+<img src="fastlane/screenshot/screenshot (0).jpg" width="24%" />
 <img src="fastlane/screenshot/screenshot (2).jpg" width="24%" />
 <img src="fastlane/screenshot/screenshot (3).jpg" width="24%" />
 <img src="fastlane/screenshot/screenshot (4).jpg" width="24%" />
