@@ -50,7 +50,7 @@
 
 ## 🧱 Créditos
 
-[Material Design 3](https://github.com/callstack/react-native-paper)
+- [Material Design 3](https://github.com/callstack/react-native-paper)
 
 ## 📃 Licença
 
