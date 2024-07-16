@@ -2,6 +2,8 @@
 
 Todas as mudanças notáveis ​​(a partir da v1.1.4) em versões estáveis ​​serão documentadas neste arquivo.
 
+## [1.1.9](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.9) - 2024-07-16
+
 ## [1.1.8](https://github.com/LucasLixo/TV-Hub/releases/tag/1.1.8) - 2024-06-16
 
 ### Novidades
